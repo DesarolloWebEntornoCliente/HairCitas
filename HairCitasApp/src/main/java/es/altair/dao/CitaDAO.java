@@ -10,5 +10,7 @@ public interface CitaDAO {
 	List<Cita> listar (Usuario u);
 
 	void borrar(int id);
+
+	void insertar(Cita c);
 	
 }

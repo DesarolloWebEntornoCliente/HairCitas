@@ -15,5 +15,7 @@
         <mapping class="es.altair.bean.Cita"/>
         <mapping class="es.altair.bean.Empleado"/>
         <mapping class="es.altair.bean.Servicio"/>
+        <mapping class="es.altair.bean.Tiempo"/>
+        <mapping class="es.altair.bean.TiempoEmpleado"/>
     </session-factory>
 </hibernate-configuration>

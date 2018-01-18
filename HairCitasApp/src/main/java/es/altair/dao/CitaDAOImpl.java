@@ -50,4 +50,21 @@ public class CitaDAOImpl implements CitaDAO {
 		
 	}
 
+	public void insertar(Cita c) {
+		
+		Session sesion = Conexion.abrirConexion();
+		
+		try {
+
+			sesion.save(c);
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+		}
+		
+	}
+
 }

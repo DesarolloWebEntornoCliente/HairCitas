@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="citas")
@@ -13,7 +15,6 @@ public class Cita implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idCita;
 	private Date fecha;
-	private Time hora;
 
 	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name="idUsuario")
@@ -27,17 +28,26 @@ public class Cita implements Serializable {
 	@JoinColumn(name="idServicio")
 	private Servicio servicio;
 
+	@OneToMany(mappedBy="citaTiempo", cascade=CascadeType.ALL)
+	private Set<TiempoEmpleado> tiemposEmpleados = new HashSet<TiempoEmpleado>();
+	
+	
 	public Cita() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Cita(Date fecha, Time hora, Usuario usuario, Empleado empleado, Servicio servicio) {
+	public Cita(Date fecha, Usuario usuario, Empleado empleado, Servicio servicio) {
 		super();
 		this.fecha = fecha;
-		this.hora = hora;
 		this.usuario = usuario;
 		this.empleado = empleado;
 		this.servicio = servicio;
+	}
+	
+	public Cita(int idCita, Date fecha) {
+		super();
+		this.idCita = idCita;
+		this.fecha = fecha;
 	}
 
 	public int getIdCita() {
@@ -54,14 +64,6 @@ public class Cita implements Serializable {
 
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
-	}
-
-	public Time getHora() {
-		return hora;
-	}
-
-	public void setHora(Time hora) {
-		this.hora = hora;
 	}
 
 	public Usuario getUsuario() {

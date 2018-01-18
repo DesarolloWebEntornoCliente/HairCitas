@@ -28,6 +28,12 @@
   	<description></description>
   	<servlet-class>es.altair.controller.BorrarCita</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>AnadirCita</servlet-name>
+  	<display-name>AnadirCita</display-name>
+  	<description></description>
+  	<servlet-class>es.altair.controller.AnadirCita</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ValidarUsuario</servlet-name>
   	<url-pattern>/ValidarUsuario</url-pattern>
@@ -43,5 +49,9 @@
   <servlet-mapping>
   	<servlet-name>BorrarCita</servlet-name>
   	<url-pattern>/BorrarCita</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AnadirCita</servlet-name>
+  	<url-pattern>/AnadirCita</url-pattern>
   </servlet-mapping>
 </web-app>

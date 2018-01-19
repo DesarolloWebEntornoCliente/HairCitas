@@ -55,6 +55,14 @@ public class TiempoEmpleado implements Serializable{
 	}
 
 
+	public Tiempo getTiempo2() {
+		return tiempo2;
+	}
+
+	public void setTiempo2(Tiempo tiempo2) {
+		this.tiempo2 = tiempo2;
+	}
+
 	public Cita getCitaTiempo() {
 		return citaTiempo;
 	}

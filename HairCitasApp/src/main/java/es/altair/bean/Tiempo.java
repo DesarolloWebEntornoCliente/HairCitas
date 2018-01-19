@@ -21,7 +21,7 @@ public class Tiempo implements Serializable{
 	private int idTiempo;
 	private String tiempo;	
 	
-	@OneToMany(mappedBy="tiempo", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="tiempo2", cascade=CascadeType.ALL)
 	private Set<TiempoEmpleado> tiemposEmpleados = new HashSet<TiempoEmpleado>();
 
 	public Tiempo() {

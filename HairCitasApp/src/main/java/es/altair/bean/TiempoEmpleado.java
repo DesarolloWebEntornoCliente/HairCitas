@@ -21,7 +21,7 @@ public class TiempoEmpleado implements Serializable{
 	
 	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name="idTiempo")
-	private Tiempo tiempo;
+	private Tiempo tiempo2;
 
 	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name="idCita")
@@ -31,9 +31,9 @@ public class TiempoEmpleado implements Serializable{
 		super();
 	}		
 
-	public TiempoEmpleado(Tiempo tiempo, Cita citaTiempo) {
+	public TiempoEmpleado(Tiempo tiempo2, Cita citaTiempo) {
 		super();
-		this.tiempo = tiempo;
+		this.tiempo2 = tiempo2;
 		this.citaTiempo = citaTiempo;
 	}
 
@@ -47,19 +47,17 @@ public class TiempoEmpleado implements Serializable{
 	}
 
 	public Tiempo getTiempo() {
-		return tiempo;
+		return tiempo2;
 	}
 
 	public void setTiempo(Tiempo tiempo) {
-		this.tiempo = tiempo;
+		this.tiempo2 = tiempo;
 	}
-
 
 
 	public Cita getCitaTiempo() {
 		return citaTiempo;
 	}
-
 
 
 	public void setCitaTiempo(Cita citaTiempo) {

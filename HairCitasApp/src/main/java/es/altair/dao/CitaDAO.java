@@ -12,5 +12,7 @@ public interface CitaDAO {
 	void borrar(int id);
 
 	void insertar(Cita c);
+
+	Cita ultimaCitaGuardada();
 	
 }

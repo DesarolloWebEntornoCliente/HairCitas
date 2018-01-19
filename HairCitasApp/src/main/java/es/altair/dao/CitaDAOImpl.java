@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Session;
 
 import es.altair.bean.Cita;
+import es.altair.bean.Empleado;
 import es.altair.bean.Usuario;
 
 public class CitaDAOImpl implements CitaDAO {
@@ -65,6 +66,23 @@ public class CitaDAOImpl implements CitaDAO {
 			sesion.close();
 		}
 		
+	}
+
+	public Cita ultimaCitaGuardada() {
+		
+		Cita cit = null;
+		
+		Session sesion = Conexion.abrirConexion();
+		
+		int id = (Integer) sesion.createSQLQuery("SELECT MAX(idCita) from citas").uniqueResult();
+		
+		cit = (Cita)sesion.createQuery("select s from Cita s where idCita=:id").setParameter("id", id).uniqueResult();
+		
+			sesion.getTransaction().commit();
+					
+		Conexion.desconectar(sesion);
+		
+		return cit;
 	}
 
 }

@@ -26,7 +26,7 @@ public class Empleado implements Serializable {
 	@OneToMany(mappedBy="empleado", cascade=CascadeType.ALL)
 	private Set<Cita> citas = new HashSet<Cita>();
 
-	@OneToMany(mappedBy="empleadoTiempo", cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="citaTiempo", cascade=CascadeType.ALL)
 	private Set<TiempoEmpleado> tiemposEmpleados = new HashSet<TiempoEmpleado>();
 	
 	

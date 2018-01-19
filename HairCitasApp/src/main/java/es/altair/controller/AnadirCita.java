@@ -92,7 +92,9 @@ public class AnadirCita extends HttpServlet {
 		
 		cDAO.insertar(c);
 		
-		TiempoEmpleado te = new TiempoEmpleado(tiempo, c); // verificar se ya tiene ID
+		Cita cRec = cDAO.ultimaCitaGuardada();
+		
+		TiempoEmpleado te = new TiempoEmpleado(tiempo, cRec); // verificar se ya tiene ID
 		
 		teDAO.insertar(te);
 

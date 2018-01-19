@@ -43,12 +43,6 @@ public class Cita implements Serializable {
 		this.empleado = empleado;
 		this.servicio = servicio;
 	}
-	
-	public Cita(int idCita, Date fecha) {
-		super();
-		this.idCita = idCita;
-		this.fecha = fecha;
-	}
 
 	public int getIdCita() {
 		return idCita;
@@ -88,6 +82,14 @@ public class Cita implements Serializable {
 
 	public void setServicio(Servicio servicio) {
 		this.servicio = servicio;
+	}
+
+	public Set<TiempoEmpleado> getTiemposEmpleados() {
+		return tiemposEmpleados;
+	}
+
+	public void setTiemposEmpleados(Set<TiempoEmpleado> tiemposEmpleados) {
+		this.tiemposEmpleados = tiemposEmpleados;
 	}
 
 	

@@ -34,6 +34,12 @@
   	<description></description>
   	<servlet-class>es.altair.controller.AnadirCita</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>AnadirHora</servlet-name>
+  	<display-name>AnadirHora</display-name>
+  	<description></description>
+  	<servlet-class>es.altair.controller.AnadirHora</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ValidarUsuario</servlet-name>
   	<url-pattern>/ValidarUsuario</url-pattern>
@@ -53,5 +59,9 @@
   <servlet-mapping>
   	<servlet-name>AnadirCita</servlet-name>
   	<url-pattern>/AnadirCita</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AnadirHora</servlet-name>
+  	<url-pattern>/AnadirHora</url-pattern>
   </servlet-mapping>
 </web-app>

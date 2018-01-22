@@ -9,6 +9,8 @@ public interface TiempoDAO {
 	List<Tiempo> listar ();
 
 	Tiempo obtenerTiempo(int horario);
+	
+	List<Object[]> listaHorariosDisponibles(int id, String fechaEnt);
 
 
 }

@@ -3,6 +3,8 @@ package es.altair.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
 import es.altair.bean.Empleado;
@@ -45,6 +47,41 @@ public class TiempoDAOImpl implements TiempoDAO {
 		Conexion.desconectar(sesion);
 		
 		return tmp;
+	}
+
+	public List<Object[]> listaHorariosDisponibles(int id, String fechaEnt) {
+		
+		List<Tiempo> tmp1 = new ArrayList<Tiempo>();
+		
+		List<Object[]> tmp2 = new ArrayList<Object[]>();
+		
+		String fecha[] = fechaEnt.split("/");
+		String fechaAux = String.format("%s-%s-%s", fecha[2], fecha[1], fecha[0]); 
+
+		Session sesion = Conexion.abrirConexion();
+		
+		try {
+			
+			
+			tmp2 = sesion.createSQLQuery("select * from tiempos where idTiempo not in (select te.idTiempo from tiempos t left join tiempoempleados te on (t.idTiempo=te.idTiempo) join citas c on  (te.idCita=c.idCita)\r\n" + 
+					"where c.idEmpleado=:id  and fecha=:fechaAux) group by tiempo order by tiempo")
+					.setParameter("id", id)
+					.setParameter("fechaAux", fechaAux)
+					.list();
+			
+
+			sesion.getTransaction().commit();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+			// sf.close();
+		}
+		
+
+
+		return tmp2;
 	}
 
 }

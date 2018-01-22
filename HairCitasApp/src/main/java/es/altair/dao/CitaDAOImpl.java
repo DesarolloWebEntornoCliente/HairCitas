@@ -18,7 +18,7 @@ public class CitaDAOImpl implements CitaDAO {
 		
 		try {
 
-			citas = sesion.createQuery("FROM Cita c WHERE usuario=:usu order by fecha, hora").setParameter("usu", u).list();
+			citas = sesion.createQuery("FROM Cita c WHERE usuario=:usu order by fecha").setParameter("usu", u).list();
 
 			sesion.getTransaction().commit();
 			
@@ -83,6 +83,25 @@ public class CitaDAOImpl implements CitaDAO {
 		Conexion.desconectar(sesion);
 		
 		return cit;
+	}
+
+	public List<Object[]> listaCitaCompleta(Usuario u) {
+		
+	List<Object[]> citaFull = new ArrayList<Object[]>();
+		
+		Session sesion = Conexion.abrirConexion();
+			
+		int id = u.getIdUsuario();
+		
+		citaFull = sesion.createSQLQuery("select c.fecha, t.tiempo, s.descripcion, e.nombre, c.idCita  from citas c join tiempoempleados te on (c.idCita=te.idCita)" + 
+				"join tiempos t on (t.idTiempo=te.idTiempo) join servicios s on (c.idServicio=s.idServicio) join empleados e on (c.idEmpleado=e.idEmpleado)" + 
+				" where c.idUsuario=:id").setParameter("id", id).list();
+		
+			sesion.getTransaction().commit();
+					
+		Conexion.desconectar(sesion);
+	
+		return citaFull;
 	}
 
 }

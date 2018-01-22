@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="citas")
+@Table(name="tiempoempleados")
 public class TiempoEmpleado implements Serializable{
 	
 	@Id
@@ -37,7 +37,16 @@ public class TiempoEmpleado implements Serializable{
 		this.citaTiempo = citaTiempo;
 	}
 
-
+	public TiempoEmpleado(Tiempo tiempo2) {
+		super();
+		this.tiempo2 = tiempo2;
+	}
+	
+	public TiempoEmpleado(Cita citaTiempo) {
+		super();
+		this.citaTiempo = citaTiempo;
+	}
+	
 	public int getIdTiempoEmpleado() {
 		return idTiempoEmpleado;
 	}

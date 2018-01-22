@@ -31,6 +31,8 @@
 <link rel="stylesheet" href="../css/gijgo.min.css">
 <script src="../js/gijgo.min.js"></script>
 
+<script src="../js/codigo.js"></script>
+
 <!-- Stylesheets -->
 <link rel="stylesheet" href="../fonts/font-awesome.min.css">
 </head>
@@ -48,8 +50,6 @@
 				 EmpleadoDAO eDAO = new EmpleadoDAOImpl();
 				 List<Empleado> empleados = eDAO.listar();
 				 
-				 TiempoDAO tDAO = new TiempoDAOImpl();
-				 List<Tiempo> tiempos = tDAO.listar();
 		%>
 
 		<div class="row">
@@ -68,7 +68,7 @@
 		<div class="row">
 			<div class="col-md-5 col-md-offset-3">
 				<div class="form-area">
-					<form action="../AnadirCita" method="post" role="form" name="formulario" >
+					<form action="../AnadirHora" method="post" role="form" name="formulario" >
 						<h3>Anadir Cita</h3>
 						<div class="input-group mb-3">
 						  <div class="input-group-prepend">
@@ -102,36 +102,21 @@
 						  </select>
 						</div>
 						<div class="input-group">
-						   <label>Fecha <input id="datepicker" name="datepicker"/></label> 
+						   <label>Fecha <input id="datepicker" name="datepicker"  /></label> 
 						    <script>
 						        $('#datepicker').datepicker({
 						            showOtherMonths: true
 						        });
 						    </script>
 						</div>    
-						    
-						<div class="input-group">
-
-								<%				
-									for (Tiempo t : tiempos) {
-								%>
-									<label class="custom-control custom-radio">
-									<input id="radio1" name="radio1" type="radio" class="custom-control-input" value="<%=t.getIdTiempo()%>">
-									<span class="custom-control-indicator"></span>
-									<span class="custom-control-description"><%=t.getTiempo()%></span>
-									</label>
-								<%
-									}
-								%>	
 													
 						</div>
 						<script type="text/javascript">
-							$(document).ready(function()
-								{
+													
+							$(document).ready(function(){
 								$("#boton").click(function () {	 
-									//alert($('input:radio[name=radio1]:checked').val());
 									$("#formulario").submit();
-									});
+									});								
 								 });
 						</script>
 					</br>

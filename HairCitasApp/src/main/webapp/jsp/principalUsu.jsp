@@ -25,6 +25,9 @@
 			} else {
 				CitaDAO cDAO = new CitaDAOImpl();
 				List<Cita> citas = cDAO.listar((Usuario) session.getAttribute("usuLogeado"));
+				
+				List<Object[]> citaFull = cDAO.listaCitaCompleta((Usuario) session.getAttribute("usuLogeado"));
+
 		%>
 
 		<a href="../CerrarSesion">Cerrar Sesión</a>
@@ -44,28 +47,31 @@
 				</thead>
 				<%
 				
-					for (Cita l : citas) {
-						long anyo = l.getFecha().getYear() + 1900;
-						long mes = l.getFecha().getMonth() + 1;
-						String hora = String.format("%02d:%02d",l.getHora().getHours(), l.getHora().getMinutes() );
-						String fecha = String.format("%02d/%02d/%04d",l.getFecha().getDate(), mes, anyo );
+				for (Object[] objects : citaFull) {
+					String fecha[] = objects[0].toString().split("-");
+					String fechaAux = String.format("%s/%s/%s", fecha[1], fecha[2], fecha[0]); 
+					//	long anyo = l.getFecha().getYear() + 1900;
+					//	long mes = l.getFecha().getMonth() + 1;
+						//String hora = String.format("%02d:%02d",l.getHora().getHours(), l.getHora().getMinutes() );
+					//	String fecha = String.format("%02d/%02d/%04d",l.getFecha().getDate(), mes, anyo );
 				%>
 				<tr>
-					<td><%=fecha%></td>
-					<td><%=hora%></td>
-					<td><%=l.getServicio().getDescripcion()%></td>
-					<td><%=l.getEmpleado().getNombre()%></td>
+					<td><%=fechaAux%></td>
+					<td><%=objects[1]%></td>
+					<td><%=objects[2]%></td>
+					<td><%=objects[3]%></td>
 					
 						<button type="button" class="btn btn-default"
 							onclick="location.href='jsp/editarCita.jsp'">
 							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 							Actualizar
-						</button> <!-- Button trigger modal -->
+						</button> 
+						<!-- Button trigger modal -->
 						<button type="button" class="btn btn-warning" data-toggle="modal"
-							data-target="#borrarCita<%=l.getIdCita()%>">
+							data-target="#borrarCita<%=objects[4]%>">
 							<i class="fa fa-times" aria-hidden="true"></i> Borrar
 						</button> <!-- Modal -->
-						<div class="modal fade" id="borrarCita<%=l.getIdCita()%>"
+						<div class="modal fade" id="borrarCita<%=objects[4]%>"
 							tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 							aria-hidden="true">
 							<div class="modal-dialog" role="document">
@@ -80,13 +86,13 @@
 									</div>
 									<div class="modal-body">
 										¿Desea borrar la Cita de 
-										<%=l.getServicio().getDescripcion() + " de "+ fecha%>?
+										<%=objects[2] + " de " + fechaAux%>?
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary"
 											data-dismiss="modal">No</button>
 										<button type="button" class="btn btn-primary"
-											onclick="location.href='../BorrarCita?idCita=<%=l.getIdCita()%>'">Sí</button>
+											onclick="location.href='../BorrarCita?idCita=<%=objects[4]%>'">Sí</button>
 									</div>
 								</div>
 							</div>

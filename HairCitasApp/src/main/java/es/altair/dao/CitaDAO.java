@@ -15,4 +15,6 @@ public interface CitaDAO {
 
 	Cita ultimaCitaGuardada();
 	
+	List<Object[]> listaCitaCompleta(Usuario u);
+	
 }

@@ -55,11 +55,14 @@ public class AnadirCita extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		int servicio = Integer.parseInt(request.getParameter("servicio"));
-		int empleado = Integer.parseInt(request.getParameter("empleado"));
-		int horario = Integer.parseInt(request.getParameter("radio1"));
+	//	int horario = Integer.parseInt(request.getParameter("radio1"));
+		
+		int horario = 2;
+
+		int servicio = Integer.parseInt(request.getParameter("servP"));
+		int empleado = Integer.parseInt(request.getParameter("empl"));
 	
-		String fecha = request.getParameter("datepicker");		
+		String fecha = request.getParameter("fech");		
 
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 

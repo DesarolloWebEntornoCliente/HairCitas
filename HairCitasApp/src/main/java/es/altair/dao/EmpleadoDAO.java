@@ -8,5 +8,7 @@ public interface EmpleadoDAO {
 	List<Empleado> listar ();
 
 	Empleado obtenerEmpleado(int empleado);
+	
+	int cuentaEmpleados();
 
 }

@@ -46,9 +46,14 @@
 				response.sendRedirect("../index.jsp?mensaje=Inicie sesión");
 			} else {
 				
-				 int servP = Integer.parseInt(request.getParameter("servicio"));
-				 String fechaP = request.getParameter("datepicker");
-				 int empP = Integer.parseInt(request.getParameter("empleado"));
+
+				
+				 int servicio = Integer.parseInt(request.getParameter("servicio"));
+				 String fecha = request.getParameter("datepicker");
+				 int empleado = Integer.parseInt(request.getParameter("empleado"));
+				 
+					String servicio11 = session.getAttribute("servicio11").toString();
+					String empleado11 = session.getAttribute("empleado11").toString();
 				
 				 ServicioDAO sDAO = new ServicioDAOImpl();
 				 List<Servicio> servicios = sDAO.listar();
@@ -57,7 +62,7 @@
 				 List<Empleado> empleados = eDAO.listar();
 				 
 				 TiempoDAO tDAO = new TiempoDAOImpl();
-				 List<Object[]> tiempos = tDAO.listaHorariosDisponibles(empP, fechaP);
+				 List<Object[]> tiempos = tDAO.listaHorariosDisponibles(empleado, fecha);
 				 
 
 				 
@@ -81,13 +86,13 @@
 		<div class="row">
 			<div class="col-md-5 col-md-offset-3">
 				<div class="form-area">
-					<form action="AnadirCita?servi=<%=servP%>> method="get" role="form" name="formulario1" >
+					<form action="AnadirCita?servicio=<%=servicio %>&empleado=<%=empleado %>&fecha=<%=fecha %>" method="post" role="form" name="formulario1" id="formulario1" >
 						<h3>Anadir Cita</h3>
 						<div class="input-group mb-3">
 						  <div class="input-group-prepend">
 						    <label class="input-group-text" for="inputGroupSelect01">Servicio  </label>
 					  	</div>
-							<input class="form-control" id="servi" name="servi" type="text" value="<%=servP%>" disabled>
+							<input class="form-control" id="servicio" name="servicio" type="text" value="<%=servicio%>" disabled>
 						</div>
 						</br>
 						<br>
@@ -98,11 +103,11 @@
 						  <div class="input-group-prepend">
 						    <label class="input-group-text" for="inputGroupSelect01">Empleado  </label>
 						  </div>
-								<input class="form-control" id="empl" name="empl" type="text" value="<%=empP%>" disabled>
+								<input class="form-control" id="empleado" name="empleado" type="text" value="<%=empleado%>" disabled>
 						</div>
 						<div class="input-group">
 						   <label>Fecha</label> 
-						  		<input class="form-control" id="fech" name="fech" type="text" value="<%=fechaP%>" disabled>
+						  		<input class="form-control" id="fecha" name="fecha" type="text" value="<%=fecha%>" disabled>
 						</div>   
 						
 						<br>
@@ -128,6 +133,7 @@
 													
 						$(document).ready(function(){
 							$("#boton").click(function () {	 
+								var servicio = document.getElementById("servicio");
 								$("#formulario1").submit();
 								});								
 							 });

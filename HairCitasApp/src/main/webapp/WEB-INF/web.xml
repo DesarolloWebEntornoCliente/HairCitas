@@ -40,6 +40,12 @@
   	<description></description>
   	<servlet-class>es.altair.controller.AnadirHora</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>InsertarUsuario</servlet-name>
+  	<display-name>InsertarUsuario</display-name>
+  	<description></description>
+  	<servlet-class>es.altair.controller.InsertarUsuario</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ValidarUsuario</servlet-name>
   	<url-pattern>/ValidarUsuario</url-pattern>
@@ -63,5 +69,9 @@
   <servlet-mapping>
   	<servlet-name>AnadirHora</servlet-name>
   	<url-pattern>/AnadirHora</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>InsertarUsuario</servlet-name>
+  	<url-pattern>/InsertarUsuario</url-pattern>
   </servlet-mapping>
 </web-app>

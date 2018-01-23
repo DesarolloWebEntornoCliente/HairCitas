@@ -17,4 +17,6 @@ public interface CitaDAO {
 	
 	List<Object[]> listaCitaCompleta(Usuario u);
 	
+	int cuentaCitas();
+	
 }

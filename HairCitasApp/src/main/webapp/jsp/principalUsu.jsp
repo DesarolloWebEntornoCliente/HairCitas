@@ -60,7 +60,7 @@
 					<td><%=objects[1]%></td>
 					<td><%=objects[2]%></td>
 					<td><%=objects[3]%></td>
-					
+					<td>
 						<button type="button" class="btn btn-default"
 							onclick="location.href='jsp/editarCita.jsp'">
 							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>

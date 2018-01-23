@@ -198,167 +198,73 @@
 
         <!-- page content -->
         <div class="right_col" role="main">
-          <!-- top tiles -->
-          <div class="row tile_count">
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Usuarios</span>
-              <div class="count"><%=numUsuarios %></div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
-            </div>
 
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Clientes Mujeres</span>
-              <div class="count green">2,500</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Clientes Hombres</span>
-              <div class="count">4,567</div>
-              <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Empleados Activos</span>
-              <div class="count"><%=numEmpleados %></div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Citas</span>
-              <div class="count"><%=numCitas %></div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
-            </div>
-          </div>
-          <!-- /top tiles -->
 
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="dashboard_graph">
 
-                <div class="row x_title">
-                  <div class="col-md-6">
-                    <h3>Flujo de Actividad en la Página <small>Ultimo Semestre</small></h3>
-                  </div>
 
-                <div class="col-md-9 col-sm-9 col-xs-12">
-                  <div id="chart_plot_01" class="demo-placeholder"></div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
-                  <div class="x_title">
-                    <h2>Plataformas de Acceso</h2>
-                    <div class="clearfix"></div>
-                  </div>
 
-                  <div class="col-md-12 col-sm-12 col-xs-6">
-                    <div>
-                      <p>Facebook </p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <p>Twitter </p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="60"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-12 col-sm-12 col-xs-6">
-                    <div>
-                      <p>Navegadores</p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="40"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <p>Tabletas y Mobiles</p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
 
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-          </div>
-          <br />
-          <div class="row">
-          </div>
+		<div class="row">
+			<div class="col-md-8">
+				<h1>Registro</h1>
+				<%
+					String error = request.getParameter("mensaje");
+					if (error != null) {
+				%>
+				<div class="alert alert-warning alert-dismissable">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-hidden="true">x</button>
+					<strong>Info!</strong>
+					<%=error%>
+				</div>
+				<%
+					}
+				%>
+				<hr>
+				<form action="../InsertarUsuario" class="form-horizontal" method="post">
+					<div class="form-group">
+						<label class="col-md-6 control-label" for="login">Login</label>
+						<div class="col-md-6">
+							<input type="text" id="login" name="login" placeholder="Login"
+								class="form-control input-md" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-6 control-label" for="password">Password</label>
+						<div class="col-md-6">
+							<input type="password" id="password" name="password" placeholder="Password"
+								class="form-control input-md" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-6 control-label" for="nombre">Nombre</label>
+						<div class="col-md-6">
+							<input type="text" id="nombre" name="nombre" placeholder="Nombre"
+								class="form-control input-md" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-6 control-label" for="email">Email</label>
+						<div class="col-md-6">
+							<input type="email" id="email" name="email" placeholder="Email"
+								class="form-control input-md" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-2">
+							<input type="submit" value="Enviar" class="btn btn-primary">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 
-            <div class="col-md-8 col-sm-8 col-xs-12">
-              <div class="row">
 
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                  <div class="x_panel">
-                    <div class="x_title">
-                      <h2>Localización de los Clientes <small>geo-presentación</small></h2>
-                      <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                          <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Settings 1</a>
-                            </li>
-                            <li><a href="#">Settings 2</a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                        </li>
-                      </ul>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                      <div class="dashboard-widget-content">
-                        <div class="col-md-4 hidden-small">
-                          <h2 class="line_30">Clientes de 12 Paises</h2>
 
-                          <table class="countries_list">
-                            <tbody>
-                              <tr>
-                                <td>España</td>
-                                <td class="fs15 fw700 text-right">33%</td>
-                              </tr>
-                              <tr>
-                                <td>Brasil</td>
-                                <td class="fs15 fw700 text-right">27%</td>
-                              </tr>
-                              <tr>
-                                <td>Alemania</td>
-                                <td class="fs15 fw700 text-right">16%</td>
-                              </tr>
-                              <tr>
-                                <td>Rusia</td>
-                                <td class="fs15 fw700 text-right">11%</td>
-                              </tr>
-                              <tr>
-                                <td>Francia</td>
-                                <td class="fs15 fw700 text-right">10%</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <div id="world-map-gdp" class="col-md-8 col-sm-12 col-xs-12" style="height:230px;"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
-              </div>
-              <div class="row">
 
-              </div>
-            </div>
-          </div>
+
+ 
         </div>
         <!-- /page content -->
       </div>

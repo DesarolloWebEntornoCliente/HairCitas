@@ -1,9 +1,13 @@
 package es.altair.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import es.altair.bean.Empleado;
 import es.altair.bean.Usuario;
 import es.altair.util.Encriptaciones;
 
@@ -97,6 +101,48 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 			sesion.close();
 		}
 		return correcto;
+	}
+
+	public int cuentaUsuarios() {
+		
+		long numUsuarios = 0;
+				
+		Session sesion = Conexion.abrirConexion();
+		
+		try {
+
+			numUsuarios = (Long) sesion.createQuery("select count(*) from Usuario d").uniqueResult(); 		
+
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+		}
+		return  (int) numUsuarios;
+	}
+
+	public List<Usuario> listar() {
+		
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+
+		Session sesion = Conexion.abrirConexion();
+		
+		try {
+
+			usuarios = sesion.createQuery("FROM Usuario e order by nombre").list();
+
+			sesion.getTransaction().commit();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+			// sf.close();
+		}
+
+		return usuarios;
 	}
 
 }

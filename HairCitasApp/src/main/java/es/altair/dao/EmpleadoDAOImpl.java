@@ -45,4 +45,23 @@ public class EmpleadoDAOImpl implements EmpleadoDAO {
 		return emp;
 	}
 
+	public int cuentaEmpleados() {
+		long numEmpleados = 0;
+		
+		Session sesion = Conexion.abrirConexion();
+		
+		try {
+
+			numEmpleados = (Long) sesion.createQuery("select count(*) from Empleado d").uniqueResult(); 		
+
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+		}
+		return  (int) numEmpleados;
+	}
+
 }

@@ -68,7 +68,7 @@
 		<div class="row">
 			<div class="col-md-5 col-md-offset-3">
 				<div class="form-area">
-					<form action="../AnadirHora" method="post" role="form" name="formulario" >
+					<form action="../AnadirHora" method="post" role="form" name="formulario" >  / / 
 						<h3>Anadir Cita</h3>
 						<div class="input-group mb-3">
 						  <div class="input-group-prepend">

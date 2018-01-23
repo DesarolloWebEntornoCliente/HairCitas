@@ -7,6 +7,7 @@ import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,6 +59,7 @@ public class AnadirHora extends HttpServlet {
 
 		try{	
 			
+			
 			int servicio = Integer.parseInt(request.getParameter("servicio"));
 			int empleado = Integer.parseInt(request.getParameter("empleado"));
 			String fecha = request.getParameter("datepicker");		
@@ -82,16 +84,23 @@ public class AnadirHora extends HttpServlet {
 				e.printStackTrace();
 			}
 
+			request.getSession().setAttribute("servicio11", servicio);
+			request.getSession().setAttribute("empleado11", empleado);
 			
+			//response.sendRedirect("jsp/anadirHora.jsp");
 			
             //adiciono los datos en el request
-			request.setAttribute("idServic", servicio);
-			request.setAttribute("idEmplea", empleado);
-			request.setAttribute("fechaHttp", fecha);
+			request.setAttribute("servicio", servicio);
+			request.setAttribute("servicio", empleado);
+			request.setAttribute("fehaHttp", fecha);
 
 			//passo as caracteristicas obtidas do produto para  a pagina altera-produto.jsp
-				RequestDispatcher rs = request.getRequestDispatcher("jsp/anadirHora.jsp");
-				rs.forward(request,response );
+			//	RequestDispatcher rs = request.getRequestDispatcher("jsp/anadirHora.jsp").forward(request, response);
+			//	rs.forward(request,response );  
+			
+				request.getRequestDispatcher("jsp/anadirHora.jsp").forward(request, response);
+
+			
 		}catch(Exception e){
 			e.printStackTrace();
 		}

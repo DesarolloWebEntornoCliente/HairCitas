@@ -104,4 +104,23 @@ public class CitaDAOImpl implements CitaDAO {
 		return citaFull;
 	}
 
+	public int cuentaCitas() {
+	long numCitas = 0;
+		
+		Session sesion = Conexion.abrirConexion();
+		
+		try {
+
+			numCitas = (Long) sesion.createQuery("select count(*) from Cita d").uniqueResult(); 		
+
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+		}
+		return  (int) numCitas;
+	}
+
 }

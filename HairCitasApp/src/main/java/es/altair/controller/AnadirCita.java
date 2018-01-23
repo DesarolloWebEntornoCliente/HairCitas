@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.Session;
+
 import es.altair.bean.Cita;
 import es.altair.bean.Empleado;
 import es.altair.bean.Servicio;
@@ -55,14 +57,13 @@ public class AnadirCita extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-	//	int horario = Integer.parseInt(request.getParameter("radio1"));
+		int horario = Integer.parseInt(request.getParameter("radio1"));
 		
-		int horario = 2;
 
-		int servicio = Integer.parseInt(request.getParameter("servP"));
-		int empleado = Integer.parseInt(request.getParameter("empl"));
+		int servicio = Integer.parseInt(request.getParameter("servicio"));
+		int empleado = Integer.parseInt(request.getParameter("empleado"));
 	
-		String fecha = request.getParameter("fech");		
+		String fecha = request.getParameter("fecha");		
 
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 

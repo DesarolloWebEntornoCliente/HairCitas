@@ -12,33 +12,34 @@
 <%@page import="es.altair.dao.ServicioDAO"%>
 <%@page import="es.altair.dao.CitaDAOImpl"%>
 <%@page import="es.altair.dao.CitaDAO"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="../images/hair.ico" type="image/ico" />
 
-   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <title>Hair Citas </title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/gh/atatanasov/gijgo@1.7.3/dist/combined/js/gijgo.min.js" type="text/javascript"></script>
     <link href="https://cdn.jsdelivr.net/gh/atatanasov/gijgo@1.7.3/dist/combined/css/gijgo.min.css" rel="stylesheet" type="text/css" />
  
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">	
 
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Anadir Cita</title>
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="../css/codigo.css" rel="stylesheet">
+  </head>
 
-<link rel="stylesheet" href="../css/gijgo.min.css">
-<script src="../js/gijgo.min.js"></script>
-
-<script src="../js/codigo.js"></script>
-
-<!-- Stylesheets -->
-<link rel="stylesheet" href="../fonts/font-awesome.min.css">
-</head>
-
-<body>
-	<div class="container">
+  <body class="nav-md">
+    <div class="container body">
+    
+ 	<div class="container">
 
 		<%
 			if (session.getAttribute("usuLogeado") == null || session.isNew()) {
@@ -51,29 +52,90 @@
 				 List<Empleado> empleados = eDAO.listar();
 				 
 		%>
+    
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+       
 
-		<div class="row">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="../index.jsp">Bienvenido
-						<%=((Usuario) session.getAttribute("usuLogeado")).getNombre()%>
-				</a></li>
-				<li class="breadcrumb-item"><a href="principalUsu.jsp">Pincipal
-						Usuario</a></li>
-				<li class="breadcrumb-item">Añadir Cita</li>
-				<li class="breadcrumb-item active"><a href="../CerrarSesion">Cerrar
-						Sesión</a></li>
-			</ol>
-		</div>
+            <div class="clearfix"></div>
 
-		<div class="row">
-			<div class="col-md-5 col-md-offset-3">
-				<div class="form-area">
-					<form action="../AnadirHora" method="post" role="form" name="formulario" >  / / 
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="profile_pic">
+              <br>
+              </div>
+              <div class="profile_info">
+                <span>Bienvenido,</span>
+                <h2><%=((Usuario) session.getAttribute("usuLogeado")).getNombre()%></h2>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                      <a href="principalUsu.jsp"><img src="../images/hairMin.jpg" alt="..." class="img-responsive " id="logoUsu"> <span></span></a>
+
+               
+              </div>
+              <div class="menu_section">
+              
+                 
+                  
+              </div>  <!-- FIN DEL MENU LATERAL -->
+
+            </div>  <!-- /sidebar menu -->
+            
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="../CerrarSesion">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+           
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+         <div class="right_col" role="main">
+
+		<div class="row col-md-10 col-md-offset-3">
+		
+						<div class="form-area">
+		
+		
+		<form action="../AnadirHora" method="post" role="form" name="formulario" >   
 						<h3>Anadir Cita</h3>
+						<table class="table table-striped">
 						<div class="input-group mb-3">
+						<tr>
+						<td>
 						  <div class="input-group-prepend">
 						    <label class="input-group-text" for="inputGroupSelect01">Servicio  </label>
 						  </div>
+						</td>
+						<td>
 							<select class="custom-select" id="servicio" name="servicio">
 							    <option selected>Seleccione el Servicio...</option>
 								<%				
@@ -85,11 +147,14 @@
 								%>						  
 							</select>
 						</div>
-
+						</td>
+						<td>
 						<div class="input-group">
 						  <div class="input-group-prepend">
 						    <label class="input-group-text" for="inputGroupSelect01">Empleado  </label>
 						  </div>
+						</td>
+						<td>
 						  <select class="custom-select" id="empleado" name="empleado">
 							    <option selected>Seleccione el Empleado...</option>
 								<%				
@@ -101,15 +166,21 @@
 								%>			
 						  </select>
 						</div>
-						<div class="input-group">
-						   <label>Fecha <input id="datepicker" name="datepicker"  /></label> 
+						</td>
+						<td>
+							<div class="input-group">
+							   <label>Fecha <input id="datepicker" name="datepicker"  /></label>
+							</div>    
+					
+						   <div>
 						    <script>
 						        $('#datepicker').datepicker({
 						            showOtherMonths: true
 						        });
 						    </script>
-						</div>    
-													
+						    </div>
+						 </td>							
+						 </tr>
 						</div>
 						<script type="text/javascript">
 													
@@ -119,28 +190,49 @@
 									});								
 								 });
 						</script>
-					</br>
-					</br>
+					</tr>
+					
+					<tr>
+					<td>
+					<br>
+					<br>
 						<div class="form-group">
-							<input type="submit" class="form-control btn btn-primary" id="boton">
+							<input type="submit" class="form-control btn btn-primary" id="boton" value="Seleccionar Horario">
 						</div>
-					</form>
-				</div>
-			</div>
+					</td>
+					<td>
+					<br>
+					<br>
+						<div class="form-group">
+						<button type="button" class="btn btn-primary" onclick="location.href='principalUsu.jsp'">Volver</button>
+						
+						</div>
+					</td>
+					</tr>
+				</table>
+				</form>
 		</div>
-
-
-		<%
+		</div>
+		</div>
+		<!-- Fin page content -->
+		
+		
+      	<%
 			}
 		%>
+    </div>
 
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 
-
-	</div>
-
-
-	<script src="../js/jquery-3.2.1.min.js"></script>
-	<script src="../js/popper.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-</body>
+    <!-- Flot plugins -->
+    <script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="../vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+	
+  </body>
 </html>

@@ -46,6 +46,24 @@
   	<description></description>
   	<servlet-class>es.altair.controller.InsertarUsuario</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>BorrarUsuario</servlet-name>
+  	<display-name>BorrarUsuario</display-name>
+  	<description></description>
+  	<servlet-class>es.altair.controller.BorrarUsuario</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>BorrarEmpleado</servlet-name>
+  	<display-name>BorrarEmpleado</display-name>
+  	<description></description>
+  	<servlet-class>es.altair.controller.BorrarEmpleado</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>BorrarServicio</servlet-name>
+  	<display-name>BorrarServicio</display-name>
+  	<description></description>
+  	<servlet-class>es.altair.controller.BorrarServicio</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ValidarUsuario</servlet-name>
   	<url-pattern>/ValidarUsuario</url-pattern>
@@ -73,5 +91,17 @@
   <servlet-mapping>
   	<servlet-name>InsertarUsuario</servlet-name>
   	<url-pattern>/InsertarUsuario</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>BorrarUsuario</servlet-name>
+  	<url-pattern>/BorrarUsuario</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>BorrarEmpleado</servlet-name>
+  	<url-pattern>/BorrarEmpleado</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>BorrarServicio</servlet-name>
+  	<url-pattern>/BorrarServicio</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -12,34 +12,31 @@
 <%@page import="es.altair.dao.ServicioDAO"%>
 <%@page import="es.altair.dao.CitaDAOImpl"%>
 <%@page import="es.altair.dao.CitaDAO"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="../images/hair.ico" type="image/ico" />
 
-   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/gh/atatanasov/gijgo@1.7.3/dist/combined/js/gijgo.min.js" type="text/javascript"></script>
-    <link href="https://cdn.jsdelivr.net/gh/atatanasov/gijgo@1.7.3/dist/combined/css/gijgo.min.css" rel="stylesheet" type="text/css" />
- 
+    <title>Hair Citas </title>
 
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Anadir Cita</title>
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="../css/font-awesome.min.css">
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+    <!-- Bootstrap -->
+    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">	
 
-<link rel="stylesheet" href="../css/gijgo.min.css">
-<script src="../js/gijgo.min.js"></script>
+    <!-- Custom Theme Style -->
+    <link href="build/css/custom.min.css" rel="stylesheet">
+    <link href="css/codigo.css" rel="stylesheet">
+  </head>
 
-<script src="../js/codigo.js"></script>
-
-<!-- Stylesheets -->
-<link rel="stylesheet" href="../fonts/font-awesome.min.css">
-</head>
-
-<body>
-	<div class="container">
+  <body class="nav-md">
+    <div class="container body">
+    
+ 	<div class="container">
 
 		<%
 			if (session.getAttribute("usuLogeado") == null || session.isNew()) {
@@ -51,9 +48,6 @@
 				 int servicio = Integer.parseInt(request.getParameter("servicio"));
 				 String fecha = request.getParameter("datepicker");
 				 int empleado = Integer.parseInt(request.getParameter("empleado"));
-				 
-					String servicio11 = session.getAttribute("servicio11").toString();
-					String empleado11 = session.getAttribute("empleado11").toString();
 				
 				 ServicioDAO sDAO = new ServicioDAOImpl();
 				 List<Servicio> servicios = sDAO.listar();
@@ -67,25 +61,78 @@
 
 				 
 		%>
+    
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+       
 
-		<div class="row">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="../index.jsp">Bienvenido
-						<%=((Usuario) session.getAttribute("usuLogeado")).getNombre()%>
-				</a></li>
-				<li class="breadcrumb-item"><a href="principalUsu.jsp">Pincipal
-						Usuario</a></li>
-				<li class="breadcrumb-item">Añadir Cita</li>
-				<li class="breadcrumb-item">Añadir Horario</li>
-				<li class="breadcrumb-item active"><a href="../CerrarSesion">Cerrar
-						Sesión</a></li>
-			</ol>
-		</div>
+            <div class="clearfix"></div>
 
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="profile_pic">
+              <br>
+              </div>
+              <div class="profile_info">
+                <span>Bienvenido,</span>
+                <h2><%=((Usuario) session.getAttribute("usuLogeado")).getNombre()%></h2>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
 
-		<div class="row">
-			<div class="col-md-5 col-md-offset-3">
-				<div class="form-area">
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                      <a href="principalUsu.jsp"><img src="images/hairMin.jpg" alt="..." class="img-responsive " id="logoUsu"> <span></span></a>
+
+               
+              </div>
+              <div class="menu_section">
+              
+                 
+                  
+              </div>  <!-- FIN DEL MENU LATERAL -->
+
+            </div>  <!-- /sidebar menu -->
+            
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="../CerrarSesion">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+           
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+         <div class="right_col" role="main">
+
+		<div class="row col-md-8 col-md-offset-2">
+		
+		
+			<div class="form-area">
 					<form action="AnadirCita?servicio=<%=servicio %>&empleado=<%=empleado %>&fecha=<%=fecha %>" method="post" role="form" name="formulario1" id="formulario1" >
 						<h3>Anadir Cita</h3>
 						<div class="input-group mb-3">
@@ -94,10 +141,6 @@
 					  	</div>
 							<input class="form-control" id="servicio" name="servicio" type="text" value="<%=servicio%>" disabled>
 						</div>
-						</br>
-						<br>
-
-
 
 						<div class="input-group">
 						  <div class="input-group-prepend">
@@ -119,11 +162,13 @@
 				
 									for (Object[] objects : tiempos) {
 								%>
+								<div class="form-check">
 									<label class="custom-control custom-radio">
 									<input id="radio1" name="radio1" type="radio" class="custom-control-input" value="<%=objects[0]%>">
 									<span class="custom-control-indicator"></span>
 									<span class="custom-control-description"><%=objects[1]%></span>
 									</label>
+								</div>	
 								<%
 									}
 								%>	
@@ -139,27 +184,42 @@
 							 });
 						</script>
 					</br>
-					</br>
+					<table>
+					<tr>
+					<td>
 						<div class="form-group">
 							<input type="submit" class="form-control btn btn-primary" id="boton">
 						</div>
+					</td>
+					<td>
+						<div class="form-group">
+						<button type="button" class="btn btn-primary" onclick="location.href='jsp/anadirCita.jsp'">Volver</button>
+						</div>
+					</td>
+					</tr>
+					</table>
 					</form>
 				</div>
-			</div>
+		
+		
 		</div>
-
-
-		<%
+		</div>
+      	<%
 			}
 		%>
+    </div>
 
+    <!-- jQuery -->
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 
-
-	</div>
-
-
-	<script src="../js/jquery-3.2.1.min.js"></script>
-	<script src="../js/popper.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-</body>
+    <!-- Flot plugins -->
+    <script src="vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="build/js/custom.min.js"></script>
+	
+  </body>
 </html>

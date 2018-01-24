@@ -45,4 +45,23 @@ public class ServicioDAOImpl implements ServicioDAO {
 		return serv;
 	}
 
+	public void borrar(int id) {
+		
+		Session sesion = Conexion.abrirConexion();
+		try {
+
+			sesion.createQuery("DELETE FROM Servicio WHERE idServicio=:id")
+				.setParameter("id", id)
+				.executeUpdate();
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+			// sf.close();
+		}
+		
+	}
+
 }

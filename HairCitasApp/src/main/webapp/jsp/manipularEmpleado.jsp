@@ -1,9 +1,9 @@
-<%@page import="es.altair.dao.CitaDAOImpl"%>
-<%@page import="es.altair.dao.CitaDAO"%>
+
 <%@page import="es.altair.dao.EmpleadoDAOImpl"%>
 <%@page import="es.altair.dao.EmpleadoDAO"%>
 <%@page import="es.altair.dao.UsuarioDAOImpl"%>
 <%@page import="es.altair.dao.UsuarioDAO"%>
+<%@page import="es.altair.bean.Empleado"%>
 <%@page import="es.altair.bean.Usuario"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -38,38 +38,29 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
-    
-    <script  type="text/javascript" src="../js/codigo.js"></script>
-    
   </head>
 
   <body class="nav-md">
     <div class="container body">
     
-    	<%
+ 	<%
 			if (session.getAttribute("usuLogeado") == null || session.isNew()) {
 				response.sendRedirect("../index.jsp?mensaje=Inicie sesión");
 			} else {
 				
-				UsuarioDAO uDAO = new UsuarioDAOImpl();
-				int numUsuarios = uDAO.cuentaUsuarios();
 				
 				EmpleadoDAO eDAO = new EmpleadoDAOImpl();
 				int numEmpleados = eDAO.cuentaEmpleados();
 				
-				CitaDAO cDAO = new CitaDAOImpl();
-				int numCitas = cDAO.cuentaCitas();
-				
+				 List<Empleado> listEmpleados = eDAO.listar();
+
 
 		%>
     
       <div class="main_container">
         <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-       
-
+          <div class="left_col scroll-view">   
             <div class="clearfix"></div>
-
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
@@ -82,13 +73,11 @@
               </div>
             </div>
             <!-- /menu profile quick info -->
-
             <br />
-
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <ul class="nav side-menu">
+                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="principalAdmin.jsp">Dashboard</a></li>
@@ -121,14 +110,10 @@
                 </ul>
               </div>
               <div class="menu_section">
-              
-                 
                   
               </div>  <!-- FIN DEL MENU LATERAL -->
 
-            </div>  <!-- /sidebar menu -->
-            
-
+            </div>  <!-- /sidebar menu -->      
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
               <a data-toggle="tooltip" data-placement="top" title="Settings">
@@ -140,7 +125,7 @@
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="../CerrarSesion">
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>
@@ -191,168 +176,74 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-        <div class="right_col" role="main" id="LoadPage">
-          <!-- top tiles -->
-          <div class="row tile_count">
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Usuarios</span>
-              <div class="count"><%=numUsuarios %></div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
-            </div>
+        <div class="right_col" role="main">
 
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Clientes Mujeres</span>
-              <div class="count green">2,500</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Clientes Hombres</span>
-              <div class="count">4,567</div>
-              <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Empleados Activos</span>
-              <div class="count"><%=numEmpleados %></div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Citas</span>
-              <div class="count"><%=numCitas %></div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
-            </div>
-          </div>
-          <!-- /top tiles -->
+		<div class="row col-md-8 col-md-offset-2">
+		<table class="table table-striped">
+			<h1>Empleados</h1>
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>DNI</th>
+						<th>Función</th>
+						<th></th>
+					</tr>
+				</thead>
+				<%
+				
+				for (Empleado emp : listEmpleados) {
+					
+				%>
+				<tr>
+					<td><%=emp.getNombre()%></td>
+					<td><%=emp.getDni()%></td>
+					<td><%=emp.getFuncion()%></td>
+					<td>
+						<button type="button" class="btn btn-default"
+							onclick="location.href='jsp/editarEmpleado.jsp'">
+							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+							Actualizar
+						</button> 
+						<!-- Button trigger modal -->
+						<button type="button" class="btn btn-warning" data-toggle="modal"
+							data-target="#borrarEmpleado<%=emp.getIdEmpleado()%>">
+							<i class="fa fa-times" aria-hidden="true"></i> Borrar
+						</button> <!-- Modal -->
+						<div class="modal fade" id="borrarEmpleado<%=emp.getIdEmpleado()%>"
+							tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Borrar
+											Empleado</h5>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										¿Desea borrar el Empleado  
+										<%=emp.getNombre()%>?
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary"
+											data-dismiss="modal">No</button>
+										<button type="button" class="btn btn-primary"
+											onclick="location.href='../BorrarEmpleado?idEmpleado=<%=emp.getIdEmpleado()%>'">Sí</button>
+									</div>
+								</div>
+							</div>
+						</div>
 
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-              <div class="dashboard_graph">
-
-                <div class="row x_title">
-                  <div class="col-md-6">
-                    <h3>Flujo de Actividad en la Página <small>Ultimo Semestre</small></h3>
-                  </div>
-
-                <div class="col-md-9 col-sm-9 col-xs-12">
-                  <div id="chart_plot_01" class="demo-placeholder"></div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
-                  <div class="x_title">
-                    <h2>Plataformas de Acceso</h2>
-                    <div class="clearfix"></div>
-                  </div>
-
-                  <div class="col-md-12 col-sm-12 col-xs-6">
-                    <div>
-                      <p>Facebook </p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <p>Twitter </p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="60"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-12 col-sm-12 col-xs-6">
-                    <div>
-                      <p>Navegadores</p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="40"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <p>Tabletas y Mobiles</p>
-                      <div class="">
-                        <div class="progress progress_sm" style="width: 76%;">
-                          <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-          </div>
-          <br />
-          <div class="row">
-          </div>
-
-            <div class="col-md-8 col-sm-8 col-xs-12">
-              <div class="row">
-
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                  <div class="x_panel">
-                    <div class="x_title">
-                      <h2>Localización de los Clientes <small>geo-presentación</small></h2>
-                      <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                          <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Settings 1</a>
-                            </li>
-                            <li><a href="#">Settings 2</a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                        </li>
-                      </ul>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                      <div class="dashboard-widget-content">
-                        <div class="col-md-4 hidden-small">
-                          <h2 class="line_30">Clientes de 12 Paises</h2>
-
-                          <table class="countries_list">
-                            <tbody>
-                              <tr>
-                                <td>España</td>
-                                <td class="fs15 fw700 text-right">33%</td>
-                              </tr>
-                              <tr>
-                                <td>Brasil</td>
-                                <td class="fs15 fw700 text-right">27%</td>
-                              </tr>
-                              <tr>
-                                <td>Alemania</td>
-                                <td class="fs15 fw700 text-right">16%</td>
-                              </tr>
-                              <tr>
-                                <td>Rusia</td>
-                                <td class="fs15 fw700 text-right">11%</td>
-                              </tr>
-                              <tr>
-                                <td>Francia</td>
-                                <td class="fs15 fw700 text-right">10%</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <div id="world-map-gdp" class="col-md-8 col-sm-12 col-xs-12" style="height:230px;"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-              <div class="row">
-
-              </div>
-            </div>
-          </div>
+					</td>
+				</tr>
+				<%
+					}
+				%>
+			</table>
+		</div>
+ 
         </div>
         <!-- /page content -->
       </div>
@@ -395,7 +286,6 @@
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-    
 	
   </body>
 </html>

@@ -64,4 +64,22 @@ public class EmpleadoDAOImpl implements EmpleadoDAO {
 		return  (int) numEmpleados;
 	}
 
+	public void borrar(int id) {
+		Session sesion = Conexion.abrirConexion();
+		try {
+
+			sesion.createQuery("DELETE FROM Empleado WHERE idEmpleado=:id")
+				.setParameter("id", id)
+				.executeUpdate();
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+			// sf.close();
+		}
+		
+	}
+
 }

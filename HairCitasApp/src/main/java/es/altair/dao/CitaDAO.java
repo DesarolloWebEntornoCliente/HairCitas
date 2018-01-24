@@ -19,4 +19,6 @@ public interface CitaDAO {
 	
 	int cuentaCitas();
 	
+	List<Object[]> listarCitas();
+	
 }

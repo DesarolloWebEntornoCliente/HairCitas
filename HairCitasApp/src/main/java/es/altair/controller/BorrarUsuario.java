@@ -8,17 +8,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import es.altair.dao.CitaDAO;
 import es.altair.dao.CitaDAOImpl;
+import es.altair.dao.UsuarioDAO;
+import es.altair.dao.UsuarioDAOImpl;
 
 /**
- * Servlet implementation class BorrarCita
+ * Servlet implementation class BorrarUsuario
  */
-public class BorrarCita extends HttpServlet {
+public class BorrarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BorrarCita() {
+    public BorrarUsuario() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,22 +30,12 @@ public class BorrarCita extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String numControlStr = "";
+		int id = Integer.parseInt(request.getParameter("idUsuario"));
 		
-		numControlStr = request.getParameter("numControlPainel");
+		UsuarioDAO uDAO = new UsuarioDAOImpl();
+		uDAO.borrar(id);
 		
-		
-		
-		int id = Integer.parseInt(request.getParameter("idCita"));
-		
-		CitaDAO cDAO = new CitaDAOImpl();
-		
-		cDAO.borrar(id);
-		
-		if(numControlStr.equals("1"))
-			response.sendRedirect("jsp/principalUsu.jsp");
-		else
-			response.sendRedirect("jsp/manipularCita.jsp");
+		response.sendRedirect("jsp/manipularUsuario.jsp");
 	}
 
 	/**

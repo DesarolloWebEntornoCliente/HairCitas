@@ -3,23 +3,42 @@
 <%@page import="es.altair.bean.Cita"%>
 <%@page import="es.altair.dao.CitaDAOImpl"%>
 <%@page import="es.altair.dao.CitaDAO"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Citas del Usuario</title>
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="../images/hair.ico" type="image/ico" />
 
-<!-- Stylesheets -->
-<link rel="stylesheet" href="../fonts/font-awesome.min.css">
-</head>
-<body>
-	<div class="container">
+    <title>Hair Citas </title>
 
-		<%
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+	
+    <!-- bootstrap-progressbar -->
+    <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <!-- bootstrap-daterangepicker -->
+    <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="../css/codigo.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+    
+ 		<%
 			if (session.getAttribute("usuLogeado") == null || session.isNew()) {
 				response.sendRedirect("../index.jsp?mensaje=Inicie sesión");
 			} else {
@@ -29,11 +48,77 @@
 				List<Object[]> citaFull = cDAO.listaCitaCompleta((Usuario) session.getAttribute("usuLogeado"));
 
 		%>
+    
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+       
 
-		<a href="../CerrarSesion">Cerrar Sesión</a>
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <div class="profile clearfix">
+              <div class="profile_pic">
+              <br>
+              </div>
+              <div class="profile_info">
+                <span>Bienvenido,</span>
+                <h2><%=((Usuario) session.getAttribute("usuLogeado")).getNombre()%></h2>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                      <a href="principalUsu.jsp"><img src="../images/hairMin.jpg" alt="..." class="img-responsive " id="logoUsu"> <span></span></a>
+
+               
+              </div>
+              <div class="menu_section">
+              
+                 
+                  
+              </div>  <!-- FIN DEL MENU LATERAL -->
+
+            </div>  <!-- /sidebar menu -->
+            
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="../CerrarSesion">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+           
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
 
 		<div class="row col-md-8 col-md-offset-2">
 			<table class="table table-striped">
+			<h1>Citas</h1>
 				<thead>
 					<a href="anadirCita.jsp" class="btn btn-primary btn-xs pull-right"><b>+</b>
 						Añadir Cita</a>
@@ -50,10 +135,7 @@
 				for (Object[] objects : citaFull) {
 					String fecha[] = objects[0].toString().split("-");
 					String fechaAux = String.format("%s/%s/%s", fecha[1], fecha[2], fecha[0]); 
-					//	long anyo = l.getFecha().getYear() + 1900;
-					//	long mes = l.getFecha().getMonth() + 1;
-						//String hora = String.format("%02d:%02d",l.getHora().getHours(), l.getHora().getMinutes() );
-					//	String fecha = String.format("%02d/%02d/%04d",l.getFecha().getDate(), mes, anyo );
+
 				%>
 				<tr>
 					<td><%=fechaAux%></td>
@@ -61,8 +143,7 @@
 					<td><%=objects[2]%></td>
 					<td><%=objects[3]%></td>
 					<td>
-						<button type="button" class="btn btn-default"
-							onclick="location.href='jsp/editarCita.jsp'">
+						<button type="button" class="btn btn-default" onclick="location.href='jsp/editarCita.jsp'">
 							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 							Actualizar
 						</button> 
@@ -92,7 +173,7 @@
 										<button type="button" class="btn btn-secondary"
 											data-dismiss="modal">No</button>
 										<button type="button" class="btn btn-primary"
-											onclick="location.href='../BorrarCita?idCita=<%=objects[4]%>'">Sí</button>
+											onclick="location.href='../BorrarCita?idCita=<%=objects[4]%>' + '&numControlPainel=<%=1%>'">Sí</button>
 									</div>
 								</div>
 							</div>
@@ -104,22 +185,45 @@
 					}
 				%>
 			</table>
-		</div>
-
-
-		<%
+		</div> 
+      	<%
 			}
 		%>
+    </div>
 
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <!-- Chart.js -->
+    <!-- gauge.js -->
+    <!-- bootstrap-progressbar -->
+    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <!-- Skycons -->
+    <!-- Flot -->
+    <script src="../vendors/Flot/jquery.flot.js"></script>
+    <script src="../vendors/Flot/jquery.flot.time.js"></script>
+    <script src="../vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="../vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="../vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="../vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="../vendors/moment/min/moment.min.js"></script>
 
-
-	</div>
-
-
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="../js/jquery-3.2.1.slim.min.js"></script>
-	<script src="../js/popper.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-</body>
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+	
+  </body>
 </html>

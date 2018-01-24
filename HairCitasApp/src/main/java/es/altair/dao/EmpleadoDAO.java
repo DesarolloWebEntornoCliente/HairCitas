@@ -11,4 +11,6 @@ public interface EmpleadoDAO {
 	
 	int cuentaEmpleados();
 
+	void borrar(int id);
+
 }

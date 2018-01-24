@@ -145,5 +145,24 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		return usuarios;
 	}
 
+	public void borrar(int id) {
+		
+		Session sesion = Conexion.abrirConexion();
+		try {
+
+			sesion.createQuery("DELETE FROM Usuario WHERE idUsuario=:id")
+				.setParameter("id", id)
+				.executeUpdate();
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+			// sf.close();
+		}
+		
+	}
+
 }
 

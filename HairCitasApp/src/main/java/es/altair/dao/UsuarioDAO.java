@@ -15,4 +15,6 @@ public interface UsuarioDAO {
 	int cuentaUsuarios();
 	
 	List<Usuario> listar();
+
+	void borrar(int id);
 }

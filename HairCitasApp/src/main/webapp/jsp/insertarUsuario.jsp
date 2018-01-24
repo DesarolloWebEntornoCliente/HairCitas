@@ -99,31 +99,22 @@
                   </li>
                   <li><a><i class="fa fa-desktop"></i> Empleados <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="form.html">Insertar</a></li>
-                      <li><a href="form_advanced.html">Editar</a></li>
-                      <li><a href="form_validation.html">Borrar</a></li>
+                      <li><a href="insertarEmpleado.jsp">Insertar</a></li>
+                      <li><a href="manipularEmpleado.jsp">Manipular Datos</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-table"></i> Citas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="form.html">Insertar</a></li>
-                      <li><a href="form_advanced.html">Modificar</a></li>
-                      <li><a href="form_validation.html">Cancelar</a></li>
+                      <li><a href="insertarCita.jsp">Insertar</a></li>
+                      <li><a href="manipularCita.jsp">Manipular Datos</a></li>
                     </ul>
                   </li>
 				  <li><a><i class="fa fa-clone"></i> Gestionar Servicios <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="form.html">Insertar</a></li>
-                      <li><a href="form_advanced.html">Editar</a></li>
-                      <li><a href="form_validation.html">Borrar</a></li>
+                      <li><a href="insertarServicio.jsp">Insertar</a></li>
+                      <li><a href="manipularServicio.jsp">Manipular Datos</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-bar-chart-o"></i> Presentación de Datos<span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="chartjs.html">Estatisticas</a></li>
-                    </ul>
-                  </li>
- 
                 </ul>
               </div>
               <div class="menu_section">

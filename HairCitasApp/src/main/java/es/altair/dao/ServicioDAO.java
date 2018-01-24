@@ -9,4 +9,6 @@ public interface ServicioDAO {
 
 	Servicio obtenerServicio(int servicio);
 
+	void borrar(int id);
+
 }

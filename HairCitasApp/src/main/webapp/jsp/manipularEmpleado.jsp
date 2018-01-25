@@ -199,8 +199,7 @@
 					<td><%=emp.getDni()%></td>
 					<td><%=emp.getFuncion()%></td>
 					<td>
-						<button type="button" class="btn btn-default"
-							onclick="location.href='jsp/editarEmpleado.jsp'">
+						<button type="button" class="btn btn-default" onclick="location.href='editarEmpleado.jsp?idEmpleado=<%=emp.getIdEmpleado()%>'">
 							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 							Actualizar
 						</button> 

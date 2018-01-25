@@ -64,4 +64,21 @@ public class ServicioDAOImpl implements ServicioDAO {
 		
 	}
 
+	public void insertar(Servicio serv) {
+		
+	Session sesion = Conexion.abrirConexion();
+		
+		try {
+
+			sesion.save(serv);
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+		}
+		
+	}
+
 }

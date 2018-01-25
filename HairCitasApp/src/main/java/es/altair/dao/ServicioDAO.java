@@ -11,4 +11,6 @@ public interface ServicioDAO {
 
 	void borrar(int id);
 
+	void insertar(Servicio serv);
+
 }

@@ -64,6 +64,24 @@
   	<description></description>
   	<servlet-class>es.altair.controller.BorrarServicio</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>InsertarEmpleado</servlet-name>
+  	<display-name>InsertarEmpleado</display-name>
+  	<description></description>
+  	<servlet-class>es.altair.controller.InsertarEmpleado</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>InsertarServicio</servlet-name>
+  	<display-name>InsertarServicio</display-name>
+  	<description></description>
+  	<servlet-class>es.altair.controller.InsertarServicio</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>EditarEmpleado</servlet-name>
+  	<display-name>EditarEmpleado</display-name>
+  	<description></description>
+  	<servlet-class>es.altair.controller.EditarEmpleado</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ValidarUsuario</servlet-name>
   	<url-pattern>/ValidarUsuario</url-pattern>
@@ -103,5 +121,17 @@
   <servlet-mapping>
   	<servlet-name>BorrarServicio</servlet-name>
   	<url-pattern>/BorrarServicio</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>InsertarEmpleado</servlet-name>
+  	<url-pattern>/InsertarEmpleado</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>InsertarServicio</servlet-name>
+  	<url-pattern>/InsertarServicio</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EditarEmpleado</servlet-name>
+  	<url-pattern>/EditarEmpleado</url-pattern>
   </servlet-mapping>
 </web-app>

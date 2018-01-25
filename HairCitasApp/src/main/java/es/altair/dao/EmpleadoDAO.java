@@ -13,4 +13,8 @@ public interface EmpleadoDAO {
 
 	void borrar(int id);
 
+	void insertar(Empleado usu);
+
+	void actualizar(Empleado emp);
+
 }

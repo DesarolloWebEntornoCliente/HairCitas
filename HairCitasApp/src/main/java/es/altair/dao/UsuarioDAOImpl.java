@@ -52,8 +52,6 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
 	public int insertar(Usuario usu) {
 		
-
-		 
 		int filas = 0;
 		String passEnc = "";
 		try {

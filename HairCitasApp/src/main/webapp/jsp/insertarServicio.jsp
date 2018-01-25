@@ -208,35 +208,29 @@
 					}
 				%>
 				<hr>
-				<form action="../InsertarUsuario" class="form-horizontal" method="post">
+				<form action="../InsertarServicio" class="form-horizontal" method="post">
+			
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="login">Login</label>
+						<label class="col-md-2 control-label" for="descripcion">Descripción</label>
 						<div class="col-md-6">
-							<input type="text" id="login" name="login" placeholder="Login"
+							<input type="text" id="descripcion" name="descripcion" placeholder="Descripción del Servicio"
 								class="form-control input-md" required>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="password">Password</label>
+						<label class="col-md-2 control-label" for="tiempo">Duración</label>
 						<div class="col-md-6">
-							<input type="password" id="password" name="password" placeholder="Password"
+							<input type="number" id="tiempo" name="tiempo" placeholder="Duración Aproximada"
 								class="form-control input-md" required>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="nombre">Nombre</label>
+						<label class="col-md-2 control-label" for="email">Precio</label>
 						<div class="col-md-6">
-							<input type="text" id="nombre" name="nombre" placeholder="Nombre"
+							<input type="number" id="precio" name="precio" placeholder="Precio"
 								class="form-control input-md" required>
 						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="email">Email</label>
-						<div class="col-md-6">
-							<input type="email" id="email" name="email" placeholder="Email"
-								class="form-control input-md" required>
-						</div>
-					</div>
+					</div>					
 					<br>
 					<br>
 					<div class="form-group">

@@ -29,9 +29,14 @@ public class Empleado implements Serializable {
 	@OneToMany(mappedBy="citaTiempo", cascade=CascadeType.ALL)
 	private Set<TiempoEmpleado> tiemposEmpleados = new HashSet<TiempoEmpleado>();
 	
+	public Empleado() {}
 	
-	public Empleado() {
+	public Empleado(int id, String nombre, String dni, String funcion) {
 		super();
+		this.idEmpleado = id;
+		this.nombre = nombre;
+		this.dni = dni;
+		this.funcion = funcion;
 	}
 
 	public Empleado(String nombre, String dni, String funcion) {

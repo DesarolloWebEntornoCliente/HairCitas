@@ -7,6 +7,7 @@ import org.hibernate.Session;
 
 import es.altair.bean.Empleado;
 import es.altair.bean.Servicio;
+import es.altair.util.Encriptaciones;
 
 public class EmpleadoDAOImpl implements EmpleadoDAO {
 
@@ -79,6 +80,47 @@ public class EmpleadoDAOImpl implements EmpleadoDAO {
 			sesion.close();
 			// sf.close();
 		}
+		
+	}
+
+	public void insertar(Empleado emp) {
+		
+	Session sesion = Conexion.abrirConexion();
+		
+		try {
+
+			sesion.save(emp);
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+		}
+
+		
+	}
+
+	public void actualizar(Empleado emp) {
+		
+		Session sesion = Conexion.abrirConexion();
+		
+		try {
+
+			sesion.createQuery("update Empleado set nombre=:n, dni=:d, funcion=:f where idEmpleado=:id")
+							.setParameter("n", emp.getNombre())
+							.setParameter("d", emp.getDni())
+							.setParameter("f", emp.getFuncion())
+							.setParameter("id", emp.getIdEmpleado())
+							.executeUpdate();
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+		}
+
 		
 	}
 

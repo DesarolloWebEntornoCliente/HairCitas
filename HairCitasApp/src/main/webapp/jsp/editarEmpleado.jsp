@@ -1,3 +1,4 @@
+<%@page import="es.altair.bean.Empleado"%>
 <%@page import="es.altair.dao.CitaDAOImpl"%>
 <%@page import="es.altair.dao.CitaDAO"%>
 <%@page import="es.altair.dao.EmpleadoDAOImpl"%>
@@ -52,10 +53,7 @@
 				int numUsuarios = uDAO.cuentaUsuarios();
 				
 				EmpleadoDAO eDAO = new EmpleadoDAOImpl();
-				int numEmpleados = eDAO.cuentaEmpleados();
-				
-				CitaDAO cDAO = new CitaDAOImpl();
-				int numCitas = cDAO.cuentaCitas();
+				Empleado emp = eDAO.obtenerEmpleado(Integer.parseInt(request.getParameter("idEmpleado")));
 				
 
 		%>
@@ -208,35 +206,29 @@
 					}
 				%>
 				<hr>
-				<form action="../InsertarUsuario" class="form-horizontal" method="post">
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="login">Login</label>
-						<div class="col-md-6">
-							<input type="text" id="login" name="login" placeholder="Login"
-								class="form-control input-md" required>
-						</div>
-					</div>
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="password">Password</label>
-						<div class="col-md-6">
-							<input type="password" id="password" name="password" placeholder="Password"
-								class="form-control input-md" required>
-						</div>
-					</div>
+				<form action="../EditarEmpleado?idEmpleado=<%=emp.getIdEmpleado()%>" class="form-horizontal" method="post">
+			
 					<div class="form-group">
 						<label class="col-md-2 control-label" for="nombre">Nombre</label>
 						<div class="col-md-6">
-							<input type="text" id="nombre" name="nombre" placeholder="Nombre"
+							<input type="text" id="nombre" name="nombre" value="<%=emp.getNombre() %>"
 								class="form-control input-md" required>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="email">Email</label>
+						<label class="col-md-2 control-label" for="dni">DNI/NIE</label>
 						<div class="col-md-6">
-							<input type="email" id="email" name="email" placeholder="Email"
+							<input type="text" id="dni" name="dni" value="<%=emp.getDni() %>"
 								class="form-control input-md" required>
 						</div>
 					</div>
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="email">Función</label>
+						<div class="col-md-6">
+							<input type="text" id="funcion" name="funcion" value="<%=emp.getFuncion() %>"
+								class="form-control input-md" required>
+						</div>
+					</div>					
 					<br>
 					<br>
 					<div class="form-group">

@@ -140,7 +140,7 @@
 						<div class="form-area">
 		
 		
-		<form action="../AnadirHora" method="post" role="form" name="formulario" >   
+						<form action="../AnadirHora" method="post" role="form"  data-parsley-validate name="formulario" class="form-horizontal form-label-left">  
 						<h3>Anadir Cita</h3>
 						<table class="table table-striped">
 						<div class="input-group mb-3">

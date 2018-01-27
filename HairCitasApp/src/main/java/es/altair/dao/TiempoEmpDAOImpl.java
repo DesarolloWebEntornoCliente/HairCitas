@@ -18,7 +18,7 @@ public class TiempoEmpDAOImpl implements TiempoEmpDAO {
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
-			sesion.close();
+			Conexion.desconectar(sesion);;
 		}
 		
 	}

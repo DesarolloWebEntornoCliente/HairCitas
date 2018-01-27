@@ -30,7 +30,7 @@ public class CerrarSesion extends HttpServlet {
 		sesion.removeAttribute("usuLogeado");
 		sesion.invalidate();
 		
-		response.sendRedirect("index.jsp?mensaje=Sesión cerrada");
+		response.sendRedirect("index.jsp?mensaje=Sesion cerrada");
 	}
 
 	/**

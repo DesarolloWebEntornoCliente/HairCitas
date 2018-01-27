@@ -2,9 +2,13 @@
 <head>
 <title>Web App</title>
 <!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="Description" content="Aplicación Web Para Controle de Citas" />
+<meta http-equiv="Content-Language” content=”es"/>
+<meta name="Robots" content="all"/>
+<meta name="keywords" content="HTML,CSS,Java,JavaScript,Bootstrap">
+<meta name="author" content="Railton Cardoso">
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css">

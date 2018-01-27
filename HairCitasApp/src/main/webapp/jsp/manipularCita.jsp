@@ -9,7 +9,7 @@
 <%@page import="es.altair.bean.Empleado"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
@@ -27,19 +27,25 @@
     <!-- Font Awesome -->
     <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
     <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 	
     <!-- bootstrap-progressbar -->
-    <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
     <!-- JQVMap -->
     <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
     <!-- bootstrap-daterangepicker -->
-    <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+    
+    
+    
+    <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    
+    
   </head>
 
   <body class="nav-md">
@@ -47,7 +53,7 @@
     
  		<%
 			if (session.getAttribute("usuLogeado") == null || session.isNew()) {
-				response.sendRedirect("../index.jsp?mensaje=Inicie sesión");
+				response.sendRedirect("../index.jsp?mensaje=Inicie sesiÃ³n");
 			} else {
 				
 				CitaDAO cDAO = new CitaDAOImpl();
@@ -190,9 +196,8 @@
         <!-- page content -->
         <div class="right_col" role="main">
 
-		<div class="row col-md-8 col-md-offset-2">
-			<table class="table table-striped">
-			<h1>Citas</h1>
+		<div class="row col-md-8 col-md-offset-2 x_content">
+			<table id="datatable" class="table table-striped ">
 				<thead>
 				<tr>
 						<th>Fecha</th>
@@ -219,9 +224,8 @@
 					<td>
 						
 						<!-- Button trigger modal -->
-						<button type="button" class="btn btn-warning" data-toggle="modal"
-							data-target="#borrarCita<%=objects[0]%>">
-							<i class="fa fa-times" aria-hidden="true"></i> Borrar
+						<button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+							data-target="#borrarCita<%=objects[0]%>"> <i class="fa fa-times" aria-hidden="true"></i> Borrar
 						</button> <!-- Modal -->
 						<div class="modal fade" id="borrarCita<%=objects[0]%>"
 							tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -237,14 +241,14 @@
 										</button>
 									</div>
 									<div class="modal-body">
-										¿Desea borrar la Cita de 
+										Â¿Desea borrar la Cita de 
 										<%=objects[3] + " del dia " + objects[1]%>?
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary"
 											data-dismiss="modal">No</button>
 										<button type="button" class="btn btn-primary"
-											onclick="location.href='../BorrarCita?idCita=<%=objects[0]%>&numControlPainel=<%=2%>' ">Sí</button>
+											onclick="location.href='../BorrarCita?idCita=<%=objects[0]%>&numControlPainel=<%=2%>' ">SÃ­</button>
 									</div>
 								</div>
 							</div>
@@ -257,34 +261,7 @@
 					}
 				%>
 			</table>
-			<nav aria-label="Page navigation example">
-			  <ul class="pagination">
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Previous">
-			        <span aria-hidden="true">&laquo;</span>
-			        <span class="sr-only">Previous</span>
-			      </a>
-			    </li>
-			    
-			    <%
-			    	for(int i=0;i<5/2;i++) 
-			    	{
-			    %>
-			    
-			    <li class="page-item"><a class="page-link" href="#"><%=i+1 %></a></li>
-			    <%
-			    	}
-			    %>
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Next">
-			        <span aria-hidden="true">&raquo;</span>
-			        <span class="sr-only">Next</span>
-			      </a>
-			    </li>
-			  </ul>
-			</nav>
-		</div>
-
+			</div>
         </div>
         <!-- /page content -->
       </div>
@@ -327,6 +304,22 @@
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+    
+    
+    
+    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    
 	
   </body>
 </html>

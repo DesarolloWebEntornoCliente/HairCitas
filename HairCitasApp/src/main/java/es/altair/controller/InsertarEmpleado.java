@@ -42,22 +42,26 @@ public class InsertarEmpleado extends HttpServlet {
 		String dni = request.getParameter("dni");
 		String nombre = request.getParameter("nombre");
 		
-		Empleado usu = new Empleado(nombre, dni, funcion);
+		Empleado emp = new Empleado(nombre, dni, funcion);
 		
 		EmpleadoDAO eDAO = new EmpleadoDAOImpl();
 		
-		int filas = 0;
-		String msg = "";		
+		String msg = "";
+		boolean noExiste = eDAO.verificarDni(emp);
 		
-
-			eDAO.insertar(usu);
-
+		if (noExiste) {
+			eDAO.insertar(emp);
+			
 			msg = "Empleado Registrado";
-				
+			
 			response.sendRedirect("jsp/manipularEmpleado.jsp?mensaje="+msg);
 		
-		
-		
+		} else {
+			msg = "El DNI/NIE ya está registrado. Intentelo con otro";
+			
+			response.sendRedirect("jsp/insertarEmpleado.jsp?mensaje="+msg);
+		}
+
 	}
 
 }

@@ -47,9 +47,10 @@ public class InsertarUsuario extends HttpServlet {
 		UsuarioDAO uDAO = new UsuarioDAOImpl();
 		
 		int filas = 0;
-		String msg = "";		
+		String msg = "";
+		boolean yaExiste = uDAO.verificarLogin(usu);
 		
-		if (uDAO.validarEmail(usu)) {
+		if (uDAO.validarEmail(usu) && yaExiste) {
 			filas = uDAO.insertar(usu);
 			if (filas == 1) {
 				msg = "Usuario Registrado";
@@ -62,7 +63,7 @@ public class InsertarUsuario extends HttpServlet {
 				response.sendRedirect("jsp/insertarUsuario.jsp?mensaje="+msg);
 			}
 		} else {
-			msg = "Email ya registrado. Int�ntelo con otro email";
+			msg = "Email o Login ya registrado. Intentelo con otro";
 			
 			response.sendRedirect("jsp/insertarUsuario.jsp?mensaje="+msg);
 		}

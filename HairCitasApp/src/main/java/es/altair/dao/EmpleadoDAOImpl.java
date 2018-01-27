@@ -7,6 +7,7 @@ import org.hibernate.Session;
 
 import es.altair.bean.Empleado;
 import es.altair.bean.Servicio;
+import es.altair.bean.Usuario;
 import es.altair.util.Encriptaciones;
 
 public class EmpleadoDAOImpl implements EmpleadoDAO {
@@ -97,7 +98,6 @@ public class EmpleadoDAOImpl implements EmpleadoDAO {
 		} finally {
 			sesion.close();
 		}
-
 		
 	}
 
@@ -120,8 +120,27 @@ public class EmpleadoDAOImpl implements EmpleadoDAO {
 		} finally {
 			sesion.close();
 		}
-
 		
+	}
+
+	public boolean verificarDni(Empleado emp) {
+			boolean correcto = true;
+
+			Session sesion = Conexion.abrirConexion();
+			try {
+
+				if ((Empleado) sesion.createQuery("From Empleado Where dni=:e")
+						.setParameter("e", emp.getDni())
+						.uniqueResult() != null)
+					correcto = false;
+
+				sesion.getTransaction().commit();
+			} catch (Exception e) {
+				// TODO: handle exception
+			} finally {
+				sesion.close();
+			}
+			return correcto;
 	}
 
 }

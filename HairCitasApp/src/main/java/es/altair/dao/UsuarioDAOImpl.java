@@ -183,7 +183,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		int filas = 0;
 		String passEnc = "";
 		try {
-			passEnc = Encriptaciones.encrypt(key, iv, usu.getPassword());
+			passEnc = Encriptaciones.encrypt(key, iv, usu.getPassword().trim());
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -205,10 +205,29 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 			// TODO: handle exception
 		} finally {
 			sesion.close();
-		}
-		
+		}	
 		
 	}
 
+	public boolean verificarLogin(Usuario usu) {
+		boolean correcto = true;
+
+		Session sesion = Conexion.abrirConexion();
+		try {
+
+			if ((Usuario) sesion.createQuery("From Usuario Where login=:e")
+					.setParameter("e", usu.getLogin())
+					.uniqueResult() != null)
+				correcto = false;
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+		}
+		return correcto;
+	}
+	
 }
 

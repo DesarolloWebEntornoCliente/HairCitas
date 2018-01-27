@@ -17,4 +17,6 @@ public interface EmpleadoDAO {
 
 	void actualizar(Empleado emp);
 
+	boolean verificarDni(Empleado emp);
+
 }

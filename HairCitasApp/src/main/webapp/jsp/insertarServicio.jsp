@@ -6,8 +6,7 @@
 <%@page import="es.altair.dao.UsuarioDAO"%>
 <%@page import="es.altair.bean.Usuario"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
@@ -45,7 +44,7 @@
     
     	<%
 			if (session.getAttribute("usuLogeado") == null || session.isNew()) {
-				response.sendRedirect("../index.jsp?mensaje=Inicie sesi髇");
+				response.sendRedirect("../index.jsp?mensaje=Inicie sesi贸n");
 			} else {
 				
 				UsuarioDAO uDAO = new UsuarioDAOImpl();
@@ -210,16 +209,16 @@
 				<form action="../InsertarServicio" class="form-horizontal" method="post">
 			
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="descripcion">Descripci髇</label>
+						<label class="col-md-2 control-label" for="descripcion">Descripci贸n</label>
 						<div class="col-md-6">
-							<input type="text" id="descripcion" name="descripcion" placeholder="Descripci髇 del Servicio"
+							<input type="text" id="descripcion" name="descripcion" placeholder="Descripci贸n del Servicio"
 								class="form-control input-md" required>
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="tiempo">Duraci髇</label>
+						<label class="col-md-2 control-label" for="tiempo">Duraci贸n</label>
 						<div class="col-md-6">
-							<input type="number" id="tiempo" name="tiempo" placeholder="Duraci髇 Aproximada"
+							<input type="number" id="tiempo" name="tiempo" placeholder="Duraci贸n Aproximada"
 								class="form-control input-md" required>
 						</div>
 					</div>
@@ -227,7 +226,7 @@
 						<label class="col-md-2 control-label" for="email">Precio</label>
 						<div class="col-md-6">
 							<input type="number" id="precio" name="precio" placeholder="Precio"
-								class="form-control input-md" required>
+								class="form-control input-md" required >
 						</div>
 					</div>					
 					<br>

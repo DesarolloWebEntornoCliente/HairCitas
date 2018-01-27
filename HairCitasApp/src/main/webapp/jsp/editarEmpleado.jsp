@@ -46,7 +46,7 @@
     
     	<%
 			if (session.getAttribute("usuLogeado") == null || session.isNew()) {
-				response.sendRedirect("../index.jsp?mensaje=Inicie sesi�n");
+				response.sendRedirect("../index.jsp?mensaje=Inicie sesión");
 			} else {
 				
 				UsuarioDAO uDAO = new UsuarioDAOImpl();
@@ -211,18 +211,18 @@
 						<label class="col-md-2 control-label" for="nombre">Nombre</label>
 						<div class="col-md-6">
 							<input type="text" id="nombre" name="nombre" value="<%=emp.getNombre() %>"
-								class="form-control input-md" required>
+								class="form-control input-md" required  pattern="[A-Z]{1}[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,29}" title="El nombre tiene que empiezar por letra maiuscula">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-md-2 control-label" for="dni">DNI/NIE</label>
 						<div class="col-md-6">
 							<input type="text" id="dni" name="dni" value="<%=emp.getDni() %>"
-								class="form-control input-md" required>
+								class="form-control input-md" required pattern="[0-9]{8,8}-[A-Z]{1}" title="Introduzca 9 numeros, seguido de guión y 1 letra Maiuscula">
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="email">Funci�n</label>
+						<label class="col-md-2 control-label" for="email">Función</label>
 						<div class="col-md-6">
 							<input type="text" id="funcion" name="funcion" value="<%=emp.getFuncion() %>"
 								class="form-control input-md" required>

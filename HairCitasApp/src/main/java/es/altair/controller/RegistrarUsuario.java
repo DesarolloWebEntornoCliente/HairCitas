@@ -46,24 +46,25 @@ public class RegistrarUsuario extends HttpServlet {
 		UsuarioDAO uDAO = new UsuarioDAOImpl();
 		
 		int filas = 0;
-		String msg = "";		
+		String msg = "";
+		boolean yaExiste = uDAO.verificarLogin(usu);
 		
-		if (uDAO.validarEmail(usu)) {
+		if (uDAO.validarEmail(usu) && yaExiste) {
 			filas = uDAO.insertar(usu);
 			if (filas == 1) {
 				msg = "Usuario Registrado";
 				
-				response.sendRedirect("index.jsp?mensaje="+msg);
+				response.sendRedirect("jsp/manipularUsuario.jsp?mensaje="+msg);
 			}
 			else {
 				msg = "Error al Registrar al Usuario";
 				
-				response.sendRedirect("jsp/registrar.jsp?mensaje="+msg);
+				response.sendRedirect("jsp/insertarUsuario.jsp?mensaje="+msg);
 			}
 		} else {
-			msg = "Email ya registrado. Int�ntelo con otro email";
+			msg = "Email o Login ya registrado. Intentelo con otro";
 			
-			response.sendRedirect("jsp/registrar.jsp?mensaje="+msg);
+			response.sendRedirect("jsp/insertarUsuario.jsp?mensaje="+msg);
 		}
 		
 		

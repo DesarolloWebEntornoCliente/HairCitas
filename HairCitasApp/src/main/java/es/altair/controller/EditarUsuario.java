@@ -40,6 +40,7 @@ public class EditarUsuario extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int estado = 0;
+		int numControl = 0;
 		int id = Integer.parseInt(request.getParameter("idUsuario"));
 
 		String login = request.getParameter("login");
@@ -54,17 +55,44 @@ public class EditarUsuario extends HttpServlet {
 
 		}
 		
+		try {
+			 numControl = Integer.parseInt(request.getParameter("numControl"));
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
 		Usuario usu = new Usuario(id, login, password, nombre, email, estado);
 		
 		UsuarioDAO uDAO = new UsuarioDAOImpl();
 		
-		String msg = "";		
+		int filas = 0;
+		String msg = "";
+		//boolean yaExiste = uDAO.verificarLogin(usu);
 		
+		//if (uDAO.validarEmail(usu)) {
+			
 			uDAO.actualizar(usu);
-
+			
 			msg = "Usuario Actualizado";
-				
-			response.sendRedirect("jsp/manipularUsuario.jsp?mensaje="+msg);
+			
+			if(numControl > 0)
+				response.sendRedirect("jsp/principalUsu.jsp?mensaje="+msg);
+			else
+				response.sendRedirect("jsp/manipularUsuario.jsp?mensaje="+msg);
+/*
+		} else {
+			msg = "Email o Login ya registrado. Intentelo con otro";
+			
+			if(numControl > 0)
+				response.sendRedirect("jsp/principalUsu.jsp?mensaje="+msg);
+			else
+				response.sendRedirect("jsp/manipularUsuario.jsp?mensaje="+msg);
+		}	
+		
+			*/
+
+
 	}
 
 }

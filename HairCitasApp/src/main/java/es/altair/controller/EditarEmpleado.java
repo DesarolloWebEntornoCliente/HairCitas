@@ -45,15 +45,23 @@ public class EditarEmpleado extends HttpServlet {
 		
 		EmpleadoDAO eDAO = new EmpleadoDAOImpl();
 		
-		int filas = 0;
-		String msg = "";		
+		String msg = "";
+		boolean noExiste = eDAO.verificarDni(emp);
 		
-
+		if (noExiste) {
+			
 			eDAO.actualizar(emp);
 
 			msg = "Empleado Actualizado";
-				
+			
 			response.sendRedirect("jsp/manipularEmpleado.jsp?mensaje="+msg);
+		
+		} else {
+			msg = "El DNI/NIE ya está registrado. Intentelo con otro";
+			
+			response.sendRedirect("jsp/manipularEmpleado.jsp?mensaje="+msg);
+		}
+
 	}
 
 }

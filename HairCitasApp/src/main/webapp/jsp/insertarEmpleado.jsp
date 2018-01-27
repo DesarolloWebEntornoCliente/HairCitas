@@ -7,7 +7,7 @@
 <%@page import="es.altair.bean.Usuario"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
@@ -45,7 +45,7 @@
     
     	<%
 			if (session.getAttribute("usuLogeado") == null || session.isNew()) {
-				response.sendRedirect("../index.jsp?mensaje=Inicie sesi�n");
+				response.sendRedirect("../index.jsp?mensaje=Inicie sesión");
 			} else {
 				
 				UsuarioDAO uDAO = new UsuarioDAOImpl();
@@ -192,7 +192,6 @@
 
 		<div class="row">
 			<div class="col-md-8">
-				<h1>Registrar</h1>
 				<%
 					String error = request.getParameter("mensaje");
 					if (error != null) {
@@ -213,20 +212,20 @@
 						<label class="col-md-2 control-label" for="nombre">Nombre</label>
 						<div class="col-md-6">
 							<input type="text" id="nombre" name="nombre" placeholder="Nombre"
-								class="form-control input-md" required>
+								class="form-control input-md" required  pattern="[A-Z]{1}[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{2,29}" title="El nombre tiene que empiezar por letra maiuscula">
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="dni">DNI/NIE</label>
+						<label class="col-md-2 control-label" for="dni">DNI/NIE</label> 
 						<div class="col-md-6">
 							<input type="text" id="dni" name="dni" placeholder="DNI / NIE"
-								class="form-control input-md" required>
+								class="form-control input-md" required pattern="[0-9]{8,8}-[A-Z]{1}" title="Introduzca 9 numeros, seguido de guión y 1 letra Maiuscula">
 						</div>
 					</div>
 					<div class="form-group">
-						<label class="col-md-2 control-label" for="email">Funci�n</label>
+						<label class="col-md-2 control-label" for="email">Función</label>
 						<div class="col-md-6">
-							<input type="text" id="funcion" name="funcion" placeholder="Funci�n"
+							<input type="text" id="funcion" name="funcion" placeholder="Función"
 								class="form-control input-md" required>
 						</div>
 										
@@ -241,9 +240,6 @@
 			</div>
 		</div>
 
-
-
- 
         </div>
         <!-- /page content -->
       </div>

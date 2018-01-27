@@ -21,4 +21,6 @@ public interface UsuarioDAO {
 	Usuario obtenerUsuarioPorId(int id);
 
 	void actualizar(Usuario usu);
+	
+	boolean verificarLogin(Usuario usu);
 }

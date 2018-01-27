@@ -36,6 +36,11 @@
     <!-- bootstrap-daterangepicker -->
     <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
+    <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
@@ -177,9 +182,8 @@
         <!-- page content -->
         <div class="right_col" role="main">
 
-		<div class="row col-md-8 col-md-offset-2">
-		<table class="table table-striped">
-			<h1>Empleados</h1>
+		<div class="row col-md-8 col-md-offset-2 x_content">
+			<table id="datatable" class="table table-striped ">
 				<thead>
 					<tr>
 						<th>Nombre</th>
@@ -222,7 +226,7 @@
 									</div>
 									<div class="modal-body">
 										¿Desea borrar el Empleado  
-										<%=emp.getNombre()%>?
+										<%=emp.getNombre()%> y las Citas a él asignadas?
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary"
@@ -240,25 +244,7 @@
 					}
 				%>
 			</table>
-			<nav aria-label="Page navigation example">
-			  <ul class="pagination">
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Previous">
-			        <span aria-hidden="true">&laquo;</span>
-			        <span class="sr-only">Previous</span>
-			      </a>
-			    </li>
-			    <li class="page-item"><a class="page-link" href="#">1</a></li>
-			    <li class="page-item"><a class="page-link" href="#">2</a></li>
-			    <li class="page-item"><a class="page-link" href="#">3</a></li>
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Next">
-			        <span aria-hidden="true">&raquo;</span>
-			        <span class="sr-only">Next</span>
-			      </a>
-			    </li>
-			  </ul>
-			</nav>
+
 		</div>
  
         </div>
@@ -303,6 +289,22 @@
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+	
+	    
+    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    
+	
 	
   </body>
 </html>

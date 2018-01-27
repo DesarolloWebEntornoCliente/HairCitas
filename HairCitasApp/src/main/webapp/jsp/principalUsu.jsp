@@ -18,18 +18,20 @@
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- iCheck -->
+        <!-- iCheck -->
     <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 	
-    <!-- bootstrap-progressbar -->
-    <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
     <!-- JQVMap -->
     <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
     <!-- bootstrap-daterangepicker -->
     <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
+   <!--  
+    <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+ -->
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
     <link href="../css/codigo.css" rel="stylesheet">
@@ -73,13 +75,9 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                      <a href="principalUsu.jsp"><img src="../images/hairMin.jpg" alt="..." class="img-responsive " id="logoUsu"> <span></span></a>
-
-               
+                      <a href="principalUsu.jsp"><img src="../images/hairMin.jpg" alt="..." class="img-responsive " id="logoUsu"> <span></span></a>               
               </div>
               <div class="menu_section">
-              
-                 
                   
               </div>  <!-- FIN DEL MENU LATERAL -->
 
@@ -105,10 +103,27 @@
           </div>
         </div>
 
-        <!-- top navigation -->
+       <!-- top navigation -->
         <div class="top_nav">
           <div class="nav_menu">
-           
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="../images/user_icon-icons.com_66546.png" alt=""><%=((Usuario) session.getAttribute("usuLogeado")).getNombre()%>
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li><a href="editarPerfil.jsp?idUsuario=<%=((Usuario) session.getAttribute("usuLogeado")).getIdUsuario()%>"> Perfil</a></li>
+                    <li><a href="../CerrarSesion"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
         <!-- /top navigation -->
@@ -116,11 +131,10 @@
         <!-- page content -->
         <div class="right_col" role="main">
 
-		<div class="row col-md-8 col-md-offset-2">
-			<table class="table table-striped">
-			<h1>Citas</h1>
+		<div class="row col-md-8 col-md-offset-2 x_content">
+			<table  class="table table-striped  table-bordered">
 				<thead>
-					<a href="anadirCita.jsp" class="btn btn-primary btn-xs pull-right"><b>+</b>
+					<a href="anadirCita.jsp" class="btn btn-primary btn-ms pull-right"><b>+</b>
 						Añadir Cita</a>
 					<tr>
 						<th>Fecha</th>
@@ -182,10 +196,13 @@
 				%>
 			</table>
 		</div> 
+		        </div>
+		
       	<%
 			}
 		%>
     </div>
+   </div>
 
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
@@ -217,7 +234,20 @@
     <script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
     <!-- bootstrap-daterangepicker -->
     <script src="../vendors/moment/min/moment.min.js"></script>
-
+<!-- 
+    <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+ -->
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
 	

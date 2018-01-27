@@ -193,7 +193,6 @@
 
 		<div class="row">
 			<div class="col-md-8">
-				<h1>Registro</h1>
 				<%
 					String error = request.getParameter("mensaje");
 					if (error != null) {

@@ -17,4 +17,8 @@ public interface UsuarioDAO {
 	List<Usuario> listar();
 
 	void borrar(int id);
+	
+	Usuario obtenerUsuarioPorId(int id);
+
+	void actualizar(Usuario usu);
 }

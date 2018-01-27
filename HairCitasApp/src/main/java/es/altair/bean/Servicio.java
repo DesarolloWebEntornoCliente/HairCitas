@@ -37,6 +37,13 @@ public class Servicio implements Serializable{
 		this.precio = precio;
 	}
 
+	public Servicio(int idServicio, String descripcion, int tiempo, double precio) {
+		super();
+		this.idServicio = idServicio;
+		this.descripcion = descripcion;
+		this.tiempo = tiempo;
+		this.precio = precio;
+	}
 	public int getIdServicio() {
 		return idServicio;
 	}

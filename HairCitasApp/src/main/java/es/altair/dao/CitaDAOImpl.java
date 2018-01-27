@@ -45,8 +45,9 @@ public class CitaDAOImpl implements CitaDAO {
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
-			sesion.close();
+			//sesion.close();
 			// sf.close();
+			Conexion.desconectar(sesion);
 		}
 		
 	}
@@ -95,7 +96,7 @@ public class CitaDAOImpl implements CitaDAO {
 		
 		citaFull = sesion.createSQLQuery("select c.fecha, t.tiempo, s.descripcion, e.nombre, c.idCita  from citas c join tiempoempleados te on (c.idCita=te.idCita)" + 
 				"join tiempos t on (t.idTiempo=te.idTiempo) join servicios s on (c.idServicio=s.idServicio) join empleados e on (c.idEmpleado=e.idEmpleado)" + 
-				" where c.idUsuario=:id order by c.fecha").setParameter("id", id).list();
+				" where c.idUsuario=:id order by c.fecha, t.tiempo").setParameter("id", id).list();
 		
 			sesion.getTransaction().commit();
 					
@@ -129,8 +130,8 @@ public class CitaDAOImpl implements CitaDAO {
 		
 		Session sesion = Conexion.abrirConexion();
 		
-		citaFull = sesion.createSQLQuery("select c.idCita, c.fecha, t.tiempo, s.descripcion, e.nombre from citas c join servicios s on (c.idServicio=s.idServicio) join empleados e on (c.idEmpleado=e.idEmpleado)\r\n" + 
-				"join tiempoempleados te on (c.idCita=te.idCita) join tiempos t on (t.idTiempo=te.idTiempo) order by c.fecha, t.tiempo, e.nombre;").list();
+		citaFull = sesion.createSQLQuery("select c.idCita, c.fecha, t.tiempo, s.descripcion, e.nombre, u.idUsuario from citas c join servicios s on (c.idServicio=s.idServicio) join empleados e on (c.idEmpleado=e.idEmpleado)\r\n" + 
+				"join tiempoempleados te on (c.idCita=te.idCita) join tiempos t on (t.idTiempo=te.idTiempo) join usuarios u on (c.idUsuario=u.idUsuario) order by c.fecha, t.tiempo, e.nombre;").list();
 		
 		/*			
 		citaFull = sesion.createSQLQuery("select c.idCita, c.fecha, t.tiempo, u.nombre, s.descripcion, e.nombre from citas c join usuarios u on (c.idUsuario=u.idUsuario) "

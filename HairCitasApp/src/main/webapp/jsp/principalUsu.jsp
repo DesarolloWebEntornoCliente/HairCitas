@@ -142,11 +142,7 @@
 					<td><%=objects[1]%></td>
 					<td><%=objects[2]%></td>
 					<td><%=objects[3]%></td>
-					<td>
-						<button type="button" class="btn btn-default" onclick="location.href='jsp/editarCita.jsp'">
-							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-							Actualizar
-						</button> 
+					<td> 
 						<!-- Button trigger modal -->
 						<button type="button" class="btn btn-warning" data-toggle="modal"
 							data-target="#borrarCita<%=objects[4]%>">
@@ -167,7 +163,7 @@
 									</div>
 									<div class="modal-body">
 										¿Desea borrar la Cita de 
-										<%=objects[2] + " de " + fechaAux%>?
+										<%=objects[2] + " del dia " + fechaAux%>?
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary"

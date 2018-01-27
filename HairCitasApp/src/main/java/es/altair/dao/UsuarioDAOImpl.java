@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import es.altair.bean.Empleado;
+import es.altair.bean.Servicio;
 import es.altair.bean.Usuario;
 import es.altair.util.Encriptaciones;
 
@@ -159,6 +160,53 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 			sesion.close();
 			// sf.close();
 		}
+		
+	}
+
+	public Usuario obtenerUsuarioPorId(int id) {
+		
+		Usuario usu = null;
+		
+		Session sesion = Conexion.abrirConexion();
+		
+		usu = (Usuario)sesion.createQuery("select s from Usuario s where idUsuario=:id").setParameter("id", id).uniqueResult();
+		
+			sesion.getTransaction().commit();
+					
+		Conexion.desconectar(sesion);
+		
+		return usu;
+	}
+
+	public void actualizar(Usuario usu) {
+		
+		int filas = 0;
+		String passEnc = "";
+		try {
+			passEnc = Encriptaciones.encrypt(key, iv, usu.getPassword());
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		Session sesion = Conexion.abrirConexion();
+		try {
+
+			sesion.createQuery("update Usuario set login=:l, password=:p, nombre=:n, email=:e, tipo=:t where idUsuario=:id")
+					.setParameter("l", usu.getLogin())
+					.setParameter("p", passEnc)
+					.setParameter("n", usu.getNombre())
+					.setParameter("e", usu.getEmail())
+					.setParameter("id", usu.getIdUsuario())
+					.setParameter("t", usu.getTipo()).executeUpdate();
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+		}
+		
 		
 	}
 

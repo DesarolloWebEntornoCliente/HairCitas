@@ -34,6 +34,21 @@
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
     <link href="../css/codigo.css" rel="stylesheet">
+    
+    <script type="text/javascript">
+        function habilitaBtn () {
+            var se = document.getElementById("servicio").value;
+            var em = document.getElementById("empleado").value;
+            var dp = document.getElementById("datepicker").value;
+
+            if(se != "Seleccione el Servicio..." && em != "Seleccione el Empleado..." && dp != "")
+            {
+                document.getElementById('btnEnviar').disabled=false;              
+            }
+
+        }
+    </script>
+    
   </head>
 
   <body class="nav-md">
@@ -136,7 +151,7 @@
 						  </div>
 						</td>
 						<td>
-							<select class="custom-select" id="servicio" name="servicio">
+							<select class="custom-select" id="servicio" name="servicio" onchange="habilitaBtn()">
 							    <option selected>Seleccione el Servicio...</option>
 								<%				
 									for (Servicio s : servicios) {
@@ -155,7 +170,7 @@
 						  </div>
 						</td>
 						<td>
-						  <select class="custom-select" id="empleado" name="empleado">
+						  <select class="custom-select" id="empleado" name="empleado"  onchange="habilitaBtn()" >
 							    <option selected>Seleccione el Empleado...</option>
 								<%				
 									for (Empleado e : empleados) {
@@ -169,7 +184,7 @@
 						</td>
 						<td>
 							<div class="input-group">
-							   <label>Fecha <input id="datepicker" name="datepicker"  /></label>
+							   <label>Fecha <input id="datepicker" name="datepicker"  onchange="habilitaBtn()" /></label>
 							</div>    
 					
 						   <div>
@@ -197,14 +212,14 @@
 					<br>
 					<br>
 						<div class="form-group">
-							<input type="submit" class="form-control btn btn-primary" id="boton" value="Seleccionar Horario">
+							<input type="submit" class="form-control btn btn-primary" id="btnEnviar" disabled value="Seleccionar Horario">
 						</div>
 					</td>
 					<td>
 					<br>
 					<br>
 						<div class="form-group">
-						<button type="button" class="btn btn-primary" onclick="location.href='principalUsu.jsp'">Volver</button>
+						<button type="button" id="btnVolver" class="btn btn-primary" onclick="location.href='principalUsu.jsp'">Volver</button>
 						
 						</div>
 					</td>

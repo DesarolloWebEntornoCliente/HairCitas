@@ -53,6 +53,11 @@
 				CitaDAO cDAO = new CitaDAOImpl();
 				List<Object[]> cFull = cDAO.listarCitas();
 				
+				UsuarioDAO uDAO = new UsuarioDAOImpl();
+				
+				//int numCitas = Integer.parseInt(request.getParameter("numCitas"));
+				
+				int contador = 0;				
 				
 		%>
     
@@ -101,7 +106,6 @@
                   </li>
                   <li><a><i class="fa fa-table"></i> Citas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="insertarCita.jsp">Insertar</a></li>
                       <li><a href="manipularCita.jsp">Manipular Datos</a></li>
                     </ul>
                   </li>
@@ -133,7 +137,7 @@
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="../CerrarSesion">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>
@@ -195,25 +199,25 @@
 						<th>Hora</th>
 						<th>Servicio</th>
 						<th>Empleado</th>
+						<th>Usuario</th>
 						<th></th>
 					</tr>
 				</thead>
 				<%
 				
 				for (Object[] objects : cFull) {
-					
+					String fecha[] = objects[1].toString().split("-");
+					String fechaAux = String.format("%s/%s/%s", fecha[1], fecha[2], fecha[0]); 
+
 				%>
 				<tr>
-					<td><%=objects[1]%></td>
+					<td><%=fechaAux%></td>
 					<td><%=objects[2]%></td>
 					<td><%=objects[3]%></td>
 					<td><%=objects[4]%></td>
+					<td><%=uDAO.obtenerUsuarioPorId(((Integer) objects[5]).intValue()).getNombre() %></td>
 					<td>
-							<button type="button" class="btn btn-default"
-							onclick="location.href='jsp/editarCita.jsp'">
-							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-							Actualizar
-						</button> 
+						
 						<!-- Button trigger modal -->
 						<button type="button" class="btn btn-warning" data-toggle="modal"
 							data-target="#borrarCita<%=objects[0]%>">
@@ -234,13 +238,13 @@
 									</div>
 									<div class="modal-body">
 										¿Desea borrar la Cita de 
-										<%=objects[3] + " de " + objects[1]%>?
+										<%=objects[3] + " del dia " + objects[1]%>?
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary"
 											data-dismiss="modal">No</button>
 										<button type="button" class="btn btn-primary"
-											onclick="location.href='../BorrarCita?idCita=<%=objects[0]%>'+'&numControlPainel=<%=2%>' ">Sí</button>
+											onclick="location.href='../BorrarCita?idCita=<%=objects[0]%>&numControlPainel=<%=2%>' ">Sí</button>
 									</div>
 								</div>
 							</div>
@@ -249,9 +253,36 @@
 					</td>
 				</tr>
 				<%
+				
 					}
 				%>
 			</table>
+			<nav aria-label="Page navigation example">
+			  <ul class="pagination">
+			    <li class="page-item">
+			      <a class="page-link" href="#" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			        <span class="sr-only">Previous</span>
+			      </a>
+			    </li>
+			    
+			    <%
+			    	for(int i=0;i<5/2;i++) 
+			    	{
+			    %>
+			    
+			    <li class="page-item"><a class="page-link" href="#"><%=i+1 %></a></li>
+			    <%
+			    	}
+			    %>
+			    <li class="page-item">
+			      <a class="page-link" href="#" aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			        <span class="sr-only">Next</span>
+			      </a>
+			    </li>
+			  </ul>
+			</nav>
 		</div>
 
         </div>

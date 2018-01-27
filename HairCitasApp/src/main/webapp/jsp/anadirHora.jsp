@@ -1,3 +1,4 @@
+<%@page import="javax.swing.text.Document"%>
 <%@page import="es.altair.bean.Tiempo"%>
 <%@page import="es.altair.dao.TiempoDAOImpl"%>
 <%@page import="es.altair.dao.TiempoDAO"%>
@@ -31,6 +32,15 @@
     <!-- Custom Theme Style -->
     <link href="build/css/custom.min.css" rel="stylesheet">
     <link href="css/codigo.css" rel="stylesheet">
+    
+       <script type="text/javascript">
+        function habilitaBtn () {
+
+                document.getElementById('btnEnviar').disabled=false;              
+        
+        }
+    </script>
+    
   </head>
 
   <body class="nav-md">
@@ -48,6 +58,9 @@
 				 int servicio = Integer.parseInt(request.getParameter("servicio"));
 				 String fecha = request.getParameter("datepicker");
 				 int empleado = Integer.parseInt(request.getParameter("empleado"));
+				 
+					String fecha1[] = fecha.toString().split("/");
+					String fechaAux = String.format("%s/%s/%s", fecha1[1], fecha1[0], fecha1[2]); 
 				
 				 ServicioDAO sDAO = new ServicioDAOImpl();
 				 List<Servicio> servicios = sDAO.listar();
@@ -57,6 +70,8 @@
 				 
 				 TiempoDAO tDAO = new TiempoDAOImpl();
 				 List<Object[]> tiempos = tDAO.listaHorariosDisponibles(empleado, fecha);
+				 
+				 int contador = 0;
 				 
 
 				 
@@ -139,40 +154,42 @@
 						  <div class="input-group-prepend">
 						    <label class="input-group-text" for="inputGroupSelect01">Servicio  </label>
 					  	</div>
-							<input class="form-control" id="servicio" name="servicio" type="text" value="<%=servicio%>" disabled>
+							<input class="form-control" id="servicio" name="servicio" type="text" value="<%=sDAO.obtenerServicio(servicio).getDescripcion() %>" disabled>
 						</div>
 
 						<div class="input-group">
 						  <div class="input-group-prepend">
 						    <label class="input-group-text" for="inputGroupSelect01">Empleado  </label>
 						  </div>
-								<input class="form-control" id="empleado" name="empleado" type="text" value="<%=empleado%>" disabled>
+								<input class="form-control" id="empleado" name="empleado" type="text" value="<%=eDAO.obtenerEmpleado(empleado).getNombre()%>" disabled>
 						</div>
 						<div class="input-group">
 						   <label>Fecha</label> 
-						  		<input class="form-control" id="fecha" name="fecha" type="text" value="<%=fecha%>" disabled>
+						  		<input class="form-control" id="fecha" name="fecha" type="text" value="<%=fechaAux%>" disabled>
 						</div>   
 						
 						<br>
 						<br> 
 						    
-						<div class="input-group" id="listaHoras" name="listaHoras">
-
+						<div class="btn-group" id="listaHoras" name="listaHoras" >
+						
 								<%			
 				
 									for (Object[] objects : tiempos) {
 								%>
-								<div class="form-check">
+																	
+								<div class="form-check" id="tablaHoras">
 									<label class="custom-control custom-radio">
-									<input id="radio1" name="radio1" type="radio" class="custom-control-input" value="<%=objects[0]%>">
+									<input id="radio1" name="radio1" type="radio" class="custom-control-input" onclick="habilitaBtn()" value="<%=objects[0]%>">
 									<span class="custom-control-indicator"></span>
 									<span class="custom-control-description"><%=objects[1]%></span>
 									</label>
 								</div>	
 								<%
 									}
-								%>	
-													
+								%>
+									
+							
 						</div>
 						<script type="text/javascript">
 													
@@ -183,26 +200,31 @@
 								});								
 							 });
 						</script>
-					</br>
+					<br>
+					<br>
+					<br>
 					<table>
-					<tr>
+					<tr colspan=3>
 					<td>
 						<div class="form-group">
-							<input type="submit" class="form-control btn btn-primary" id="boton">
+							<input type="submit" class=" btn btn-primary" id="btnEnviar" disabled value="Emviar">
 						</div>
 					</td>
 					<td>
 						<div class="form-group">
-						<button type="button" class="btn btn-primary" onclick="location.href='jsp/anadirCita.jsp'">Volver</button>
+						<button type="button" class="btn btn-warning" onclick="location.href='jsp/anadirCita.jsp'">Volver</button>
+						</div>
+					</td>
+					<td>
+						<div class="form-group">
+						<button type="button" class="btn btn-danger" onclick="location.href='jsp/principalUsu.jsp'">Cancelar</button>
 						</div>
 					</td>
 					</tr>
 					</table>
 					</form>
-				</div>
-		
-		
-		</div>
+				</div>				
+			</div>
 		</div>
       	<%
 			}

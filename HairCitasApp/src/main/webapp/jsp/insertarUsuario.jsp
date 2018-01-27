@@ -38,6 +38,7 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="../css/codigo.css" rel="stylesheet">
   </head>
 
   <body class="nav-md">
@@ -105,7 +106,6 @@
                   </li>
                   <li><a><i class="fa fa-table"></i> Citas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="insertarCita.jsp">Insertar</a></li>
                       <li><a href="manipularCita.jsp">Manipular Datos</a></li>
                     </ul>
                   </li>
@@ -137,7 +137,7 @@
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="../CerrarSesion">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>
@@ -237,6 +237,21 @@
 								class="form-control input-md" required>
 						</div>
 					</div>
+					
+					 <div class="form-group">
+					 <label class="col-md-2 control-label" for="estado">Tipo</label>
+                        <div class="col-md-6">
+                          <div id="gender" class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                              <input type="radio" name="estado" value="0" required> &nbsp; Usuario &nbsp;
+                            </label>
+                            <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                              <input type="radio" name="estado" value="1"> Admin
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+					
 					<br>
 					<br>
 					<div class="form-group">

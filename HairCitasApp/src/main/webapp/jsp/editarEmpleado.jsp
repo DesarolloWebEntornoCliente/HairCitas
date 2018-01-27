@@ -103,7 +103,6 @@
                   </li>
                   <li><a><i class="fa fa-table"></i> Citas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="insertarCita.jsp">Insertar</a></li>
                       <li><a href="manipularCita.jsp">Manipular Datos</a></li>
                     </ul>
                   </li>
@@ -135,7 +134,7 @@
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="../CerrarSesion">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>

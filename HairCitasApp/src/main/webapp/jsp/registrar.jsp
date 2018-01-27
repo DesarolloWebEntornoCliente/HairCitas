@@ -55,7 +55,7 @@
 					<div class="form-group">
 						<label class="col-md-6 control-label" for="email">Email</label>
 						<div class="col-md-6">
-							<input type="email" id="email" name="email" placeholder="Email"
+							<input type="email" id="email" name="email" placeholder="Correo"
 								class="form-control input-md" required>
 						</div>
 					</div>

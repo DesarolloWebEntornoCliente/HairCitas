@@ -81,4 +81,27 @@ public class ServicioDAOImpl implements ServicioDAO {
 		
 	}
 
+	public void actualizar(Servicio serv) {
+		
+		Session sesion = Conexion.abrirConexion();
+		
+		try {
+
+			sesion.createQuery("update Servicio set descripcion=:d, tiempo=:t, precio=:p where idServicio=:id")
+							.setParameter("d", serv.getDescripcion())
+							.setParameter("t", serv.getTiempo())
+							.setParameter("p", serv.getPrecio())
+							.setParameter("id", serv.getIdServicio())
+							.executeUpdate();
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+		}
+
+		
+	}
+
 }

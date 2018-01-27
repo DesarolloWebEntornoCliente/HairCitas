@@ -40,8 +40,9 @@ public class InsertarUsuario extends HttpServlet {
 		String password = request.getParameter("password");
 		String nombre = request.getParameter("nombre");
 		String email = request.getParameter("email");
+		int estado = Integer.parseInt(request.getParameter("estado"));
 		
-		Usuario usu = new Usuario(login, password, nombre, email, 0);
+		Usuario usu = new Usuario(login, password, nombre, email, estado);
 		
 		UsuarioDAO uDAO = new UsuarioDAOImpl();
 		
@@ -53,7 +54,7 @@ public class InsertarUsuario extends HttpServlet {
 			if (filas == 1) {
 				msg = "Usuario Registrado";
 				
-				response.sendRedirect("jsp/principalAdmin.jsp?mensaje="+msg);
+				response.sendRedirect("jsp/manipularUsuario.jsp?mensaje="+msg);
 			}
 			else {
 				msg = "Error al Registrar al Usuario";

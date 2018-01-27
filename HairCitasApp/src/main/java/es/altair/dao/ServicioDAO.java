@@ -13,4 +13,6 @@ public interface ServicioDAO {
 
 	void insertar(Servicio serv);
 
+	void actualizar(Servicio serv);
+
 }

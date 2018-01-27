@@ -5,3 +5,12 @@
 	margin-left: 50%;
 	width: 200%;
 }
+
+#listaHoras{
+	width: 400px;
+}
+
+#tablaHoras{ 
+	display:inline;
+	margin-right: 10px;
+}

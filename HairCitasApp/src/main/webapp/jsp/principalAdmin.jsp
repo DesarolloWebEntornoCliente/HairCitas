@@ -97,19 +97,18 @@
                   <li><a><i class="fa fa-edit"></i> Usuarios <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="insertarUsuario.jsp">Insertar</a></li>
-                      <li><a href="manipularUsuario.jsp">Manipular Datos</a></li>
+                      <li><a href="manipularUsuario.jsp?numUsuarios=<%=numUsuarios%>">Manipular Datos</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-desktop"></i> Empleados <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="insertarEmpleado.jsp">Insertar</a></li>
-                      <li><a href="manipularEmpleado.jsp">Manipular Datos</a></li>
+                      <li><a href="manipularEmpleado.jsp?numEmpleados=<%=numEmpleados%>">Manipular Datos</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-table"></i> Citas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="insertarCita.jsp">Insertar</a></li>
-                      <li><a href="manipularCita.jsp">Manipular Datos</a></li>
+                      <li><a href="manipularCita.jsp?numCitas=<%=numCitas%>">Manipular Datos</a></li>
                     </ul>
                   </li>
 				  <li><a><i class="fa fa-clone"></i> Gestionar Servicios <span class="fa fa-chevron-down"></span></a>
@@ -197,28 +196,18 @@
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total Usuarios</span>
               <div class="count"><%=numUsuarios %></div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>4% </i> De la Semana Pasada</span>
             </div>
 
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Clientes Mujeres</span>
-              <div class="count green">2,500</div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Clientes Hombres</span>
-              <div class="count">4,567</div>
-              <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>12% </i> From last Week</span>
-            </div>
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Empleados Activos</span>
               <div class="count"><%=numEmpleados %></div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> De la Semana Pasada</span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total Citas</span>
               <div class="count"><%=numCitas %></div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-desc"></i>11% </i> De la Semana Pasada</span>
             </div>
           </div>
           <!-- /top tiles -->

@@ -14,3 +14,19 @@
 	display:inline;
 	margin-right: 10px;
 }
+#imgLogin{
+	width: 20%;
+	margin-left: 40%;
+}
+.derechos{
+		align-content: center;
+		text-align: center;
+	
+	
+}
+
+#reg a{
+	
+	color: blue;
+	font-weight: bold;
+}

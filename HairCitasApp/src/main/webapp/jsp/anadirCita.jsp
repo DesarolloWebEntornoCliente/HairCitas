@@ -41,7 +41,7 @@
             var em = document.getElementById("empleado").value;
             var dp = document.getElementById("datepicker").value;
 
-            if(se != "Seleccione el Servicio..." && em != "Seleccione el Empleado..." && dp != "")
+            if(se != "Seleccione el Servicio..." && em != "Seleccione el Empleado" && dp != "")
             {
                 document.getElementById('btnEnviar').disabled=false;              
             }
@@ -133,17 +133,13 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-         <div class="right_col" role="main">
+     <div class="right_col" role="main">
 
-		<div class="row col-md-10 col-md-offset-3">
+	  <div class="row col-md-10 col-md-offset-3">		
 		
-						<div class="form-area">
-		
-		
-						<form action="../AnadirHora" method="post" role="form"  data-parsley-validate name="formulario" class="form-horizontal form-label-left">  
-						<h3>Anadir Cita</h3>
-						<table class="table table-striped">
-						<div class="input-group mb-3">
+		<form action="../AnadirHora" method="post" role="form"  data-parsley-validate name="formulario" class="form-horizontal form-label-left">  
+			<h3>Anadir Cita</h3>
+				<table>
 						<tr>
 						<td>
 						  <div class="input-group-prepend">
@@ -151,7 +147,7 @@
 						  </div>
 						</td>
 						<td>
-							<select class="custom-select" id="servicio" name="servicio" onchange="habilitaBtn()">
+							<select id="servicio" name="servicio" onchange="habilitaBtn()">
 							    <option selected>Seleccione el Servicio...</option>
 								<%				
 									for (Servicio s : servicios) {
@@ -161,74 +157,74 @@
 									}
 								%>						  
 							</select>
-						</div>
 						</td>
-						<td>
-						<div class="input-group">
-						  <div class="input-group-prepend">
-						    <label class="input-group-text" for="inputGroupSelect01">Empleado  </label>
-						  </div>
-						</td>
-						<td>
-						  <select class="custom-select" id="empleado" name="empleado"  onchange="habilitaBtn()" >
-							    <option selected>Seleccione el Empleado...</option>
-								<%				
-									for (Empleado e : empleados) {
-								%>
-						    	<option value="<%=e.getIdEmpleado()%>"><%=e.getNombre()%></option>
-								<%
-									}
-								%>			
-						  </select>
-						</div>
-						</td>
-						<td>
+						</tr>
+						<br>
+						<br>
+						<tr>
+							<td>
 							<div class="input-group">
+							  <div class="input-group-prepend">
+							    <label class="input-group-text" for="inputGroupSelect01">Empleado  </label>
+							  </div>
+							</td>
+							<td>
+							  <select id="empleado" name="empleado"  onchange="habilitaBtn()" >
+								    <option selected>Seleccione el Empleado</option>
+									<%				
+										for (Empleado e : empleados) {
+									%>
+							    	<option value="<%=e.getIdEmpleado()%>"><%=e.getNombre()%></option>
+									<%
+										}
+									%>			
+							  </select>
+							</td>
+						</tr>	
+						<tr>
+						<td>
+							<div class="input-group" style="margin-top: 20px;">
 							   <label>Fecha <input id="datepicker" name="datepicker"  onchange="habilitaBtn()" /></label>
 							</div>    
-					
-						   <div>
+				
 						    <script>
 						        $('#datepicker').datepicker({
 						            showOtherMonths: true
 						        });
 						    </script>
-						    </div>
-						 </td>							
-						 </tr>
-						</div>
-						<script type="text/javascript">
-													
-							$(document).ready(function(){
-								$("#boton").click(function () {	 
-									$("#formulario").submit();
-									});								
-								 });
-						</script>
+							<script type="text/javascript">
+														
+								$(document).ready(function(){
+									$("#boton").click(function () {	 
+										$("#formulario").submit();
+										});								
+									 });
+							</script>
+					 </td>	
+						
 					</tr>
 					
 					<tr>
 					<td>
 					<br>
 					<br>
-						<div class="form-group">
+						<div class="form-group" style="margin-top: 230px;">
 							<input type="submit" class="form-control btn btn-primary" id="btnEnviar" disabled value="Seleccionar Horario">
 						</div>
 					</td>
 					<td>
 					<br>
 					<br>
-						<div class="form-group">
-						<button type="button" id="btnVolver" class="btn btn-primary" onclick="location.href='principalUsu.jsp'">Volver</button>
+						<div class="form-group" style="margin-top: 230px;">
+						<button type="button" id="btnVolver" class="btn btn-primary" style="margin-left: 10px;" onclick="location.href='principalUsu.jsp'">Volver</button>
 						
 						</div>
 					</td>
 					</tr>
 				</table>
-				</form>
+			</form>
 		</div>
-		</div>
-		</div>
+	</div>
 		<!-- Fin page content -->
 		
 		

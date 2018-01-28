@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="UTF-8"%>
-
 <html lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -54,15 +52,15 @@
               <div>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password" required="" />
               </div>
-					<button type="submit" class="btn btn-primary">
-						<i class="fa fa-sign-in"></i> Enviar
-					</button>
+              <div>
+                <a class="btn btn-default submit" href="ValidarUsuario">Login</a>
+              </div>
 
               <div class="clearfix"></div>
 
               <div class="separator">
-                <p class="change_link">Â¿ Eres nuevo aquÃ­ ?
-                  <a href="#signup" class="to_register" style="color: blue;font-weight: bold;">  Registrate </a>
+                <p class="change_link">Eres nuevo aquí?
+                  <a href="#signup" class="to_register"> Registrate </a>
                 </p>
 
                 <div class="clearfix"></div>
@@ -70,8 +68,7 @@
 
                 <div class="derechos">
                 <img src="images/hairMin.jpg" alt="..." class="img-responsive " id="imgLogin">
-                <br>
-                  <p>Â©2018 All Rights Reserved. Railton E. Cardoso! </p>
+                  <p>©2018 All Rights Reserved. Railton E. Cardoso! </p>
                 </div>
               </div>
             </form>
@@ -80,7 +77,7 @@
 
         <div id="register" class="animate form registration_form">
           <section class="login_content">
-				<form action="RegistrarUsuario" method="post">
+				<form action="../RegistrarUsuario" method="post">
               <h1>Registrar</h1>
               <div>
                 <input type="text" class="form-control" id="login" name="login" placeholder="Login" required />
@@ -94,14 +91,15 @@
               <div>
                 <input type="email" class="form-control"  id="email" name="email" placeholder="Email" required />
               </div>
-					<button type="submit" class="btn btn-primary">
-						<i class="fa fa-sign-in"></i> Enviar
-					</button>
+              <div>
+                <a class="btn btn-default submit" href="jsp/registrar.jsp">Enviar</a>
+              </div>
+
               <div class="clearfix"></div>
 
               <div class="separator">
-                <p class="change_link">Â¿ Ya eres miembro ?
-                  <a href="#signin" class="to_register" style="color: blue;font-weight: bold;"> Haz Login </a>
+                <p class="change_link">Ya es miembro ?
+                  <a href="#signin" class="to_register"> Login </a>
                 </p>
 
                 <div class="clearfix"></div>
@@ -109,8 +107,7 @@
 
                 <div class="derechos">
                 <img src="images/hairMin.jpg" alt="..." class="img-responsive " id="imgLogin">
-                <br>
-                  <p>Â©2018 All Rights Reserved. Railton E. Cardoso! </p>
+                  <p>©2018 All Rights Reserved. Railton E. Cardoso! </p>
                 </div>
               </div>
             </form>

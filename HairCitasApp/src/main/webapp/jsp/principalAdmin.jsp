@@ -1,3 +1,5 @@
+<%@page import="es.altair.dao.ServicioDAOImpl"%>
+<%@page import="es.altair.dao.ServicioDAO"%>
 <%@page import="es.altair.dao.CitaDAOImpl"%>
 <%@page import="es.altair.dao.CitaDAO"%>
 <%@page import="es.altair.dao.EmpleadoDAOImpl"%>
@@ -6,8 +8,7 @@
 <%@page import="es.altair.dao.UsuarioDAO"%>
 <%@page import="es.altair.bean.Usuario"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
@@ -55,7 +56,7 @@
     
     	<%
 			if (session.getAttribute("usuLogeado") == null || session.isNew()) {
-				response.sendRedirect("../index.jsp?mensaje=Inicie sesión");
+				response.sendRedirect("../index.jsp?mensaje=Inicie sesiÃ³n");
 			} else {
 				
 				UsuarioDAO uDAO = new UsuarioDAOImpl();
@@ -66,6 +67,9 @@
 				
 				CitaDAO cDAO = new CitaDAOImpl();
 				int numCitas = cDAO.cuentaCitas();
+				
+				ServicioDAO sDAO = new ServicioDAOImpl();
+				int numServicios = sDAO.cuentaServicios();
 				
 
 		%>
@@ -201,7 +205,7 @@
           <!-- top tiles -->
           <div class="row tile_count">
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Usuarios</span>
+              <span class="count_top"><i class="fa fa-user"></i> Total de Usuarios</span>
               <div class="count"><%=numUsuarios %></div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>4% </i> De la Semana Pasada</span>
             </div>
@@ -212,7 +216,12 @@
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> De la Semana Pasada</span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Citas</span>
+              <span class="count_top"><i class="fa fa-user"></i> Total de Servicios</span>
+              <div class="count"><%=numServicios %></div>
+              <span class="count_bottom"><i class="green"><i class="fa fa-sort-desc"></i>2% </i> De la Semana Pasada</span>
+            </div>
+          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+              <span class="count_top"><i class="fa fa-user"></i> Total de Citas</span>
               <div class="count"><%=numCitas %></div>
               <span class="count_bottom"><i class="green"><i class="fa fa-sort-desc"></i>11% </i> De la Semana Pasada</span>
             </div>
@@ -225,7 +234,7 @@
 
                 <div class="row x_title">
                   <div class="col-md-6">
-                    <h3>Flujo de Actividad en la Página <small>Ultimo Semestre</small></h3>
+                    <h3>Flujo de Actividad en la PÃ¡gina <small>Ultimo Semestre</small></h3>
                   </div>
 
                 <div class="col-md-9 col-sm-9 col-xs-12">
@@ -289,7 +298,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                   <div class="x_panel">
                     <div class="x_title">
-                      <h2>Localización de los Clientes <small>geo-presentación</small></h2>
+                      <h2>LocalizaciÃ³n de los Clientes <small>geo-presentaciÃ³n</small></h2>
                       <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -315,7 +324,7 @@
                           <table class="countries_list">
                             <tbody>
                               <tr>
-                                <td>España</td>
+                                <td>EspaÃ±a</td>
                                 <td class="fs15 fw700 text-right">33%</td>
                               </tr>
                               <tr>

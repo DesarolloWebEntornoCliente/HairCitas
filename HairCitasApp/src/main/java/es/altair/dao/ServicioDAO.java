@@ -15,4 +15,6 @@ public interface ServicioDAO {
 
 	void actualizar(Servicio serv);
 
+	int cuentaServicios();
+
 }

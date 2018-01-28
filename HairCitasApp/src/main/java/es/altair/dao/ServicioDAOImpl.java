@@ -104,4 +104,23 @@ public class ServicioDAOImpl implements ServicioDAO {
 		
 	}
 
+	public int cuentaServicios() {
+		
+	long numServicios = 0;
+		
+		Session sesion = Conexion.abrirConexion();
+		
+		try {
+
+			numServicios = (Long) sesion.createQuery("select count(*) from Servicio d").uniqueResult(); 		
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+		}
+		return  (int) numServicios;
+	}
+
 }

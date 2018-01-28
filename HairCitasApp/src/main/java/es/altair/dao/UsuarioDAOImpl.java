@@ -211,8 +211,9 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
 	public boolean verificarLogin(Usuario usu) {
 		boolean correcto = true;
-
+		
 		Session sesion = Conexion.abrirConexion();
+
 		try {
 
 			if ((Usuario) sesion.createQuery("From Usuario Where login=:e")

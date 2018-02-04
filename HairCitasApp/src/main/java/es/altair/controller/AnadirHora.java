@@ -34,7 +34,6 @@ import es.altair.dao.TiempoEmpDAOImpl;
  * Servlet implementation class AnadirCita
  */
 public class AnadirHora extends HttpServlet {
-	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()

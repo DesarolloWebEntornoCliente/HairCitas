@@ -40,12 +40,10 @@
             var se = document.getElementById("servicio").value;
             var em = document.getElementById("empleado").value;
             var dp = document.getElementById("datepicker").value;
-
             if(se != "Seleccione el Servicio..." && em != "Seleccione el Empleado" && dp != "")
             {
                 document.getElementById('btnEnviar').disabled=false;              
             }
-
         }
     </script>
     
@@ -189,7 +187,7 @@
 				
 						    <script>
 						        $('#datepicker').datepicker({
-						            showOtherMonths: true
+						            showOtherMonths: true,
 						        });
 						    </script>
 							<script type="text/javascript">
@@ -247,3 +245,6 @@
 	
   </body>
 </html>
+
+
+

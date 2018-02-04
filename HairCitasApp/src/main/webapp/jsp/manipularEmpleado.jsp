@@ -1,4 +1,6 @@
-
+<%@page import="es.altair.bean.Log"%>
+<%@page import="es.altair.dao.UtilDAOImpl"%>
+<%@page import="es.altair.dao.UtilDAO"%>
 <%@page import="es.altair.dao.EmpleadoDAOImpl"%>
 <%@page import="es.altair.dao.EmpleadoDAO"%>
 <%@page import="es.altair.dao.UsuarioDAOImpl"%>
@@ -58,6 +60,11 @@
 				int numEmpleados = eDAO.cuentaEmpleados();
 				
 				 List<Empleado> listEmpleados = eDAO.listar();
+				 
+					UtilDAO utDAO = new UtilDAOImpl();
+					List<Log> listaLogs = utDAO.listarLogs();
+					
+					int numLogs = listaLogs.size();
 
 
 		%>
@@ -160,18 +167,32 @@
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">0</span>
-                  </a>
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                    <span class="badge bg-green"><%=numLogs %></span>
+                  </a>    
+                  
+ 				  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+ 				  	<%
+				
+						for (Log logs : listaLogs) {
+							String fecha[] = logs.getFechaLog().toString().split("-");
+							String fechaAux = String.format("%s/%s/%s", fecha[1], fecha[2].substring(0,2), fecha[0]); 
+					%>
                     <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>Verificar Alertas</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
+                      <a href="../BorrarLog?idLog=<%=logs.getIdlog() %>">
+                        <span class="image"><img src="../images/delete.png" alt="" /></span>
+                        <span>
+                          <span><%=fechaAux %></span>
+                        </span>
+                        <span class="message">
+                           <%=logs.getLogDesc() %>
+                        </span>
+                      </a>
                     </li>
+   
+                  <% } %>
+                    
                   </ul>
+
                 </li>
               </ul>
             </nav>

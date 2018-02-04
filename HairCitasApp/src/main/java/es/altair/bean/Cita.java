@@ -1,8 +1,9 @@
 package es.altair.bean;
 
 import javax.persistence.*;
+import javax.validation.constraints.Past;
+
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,6 +15,8 @@ public class Cita implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idCita;
+	
+	@Past
 	private Date fecha;
 
 	@ManyToOne(cascade = CascadeType.DETACH)

@@ -148,7 +148,7 @@
 		
 		
 			<div class="form-area">
-					<form action="AnadirCita?servicio=<%=servicio %>&empleado=<%=empleado %>&fecha=<%=fecha %>" method="post" role="form" name="formulario1" id="formulario1" >
+					<form action="AnadirCita?servicio=<%=servicio %>&empleado=<%=empleado %>&fecha=<%=fechaAux %>" method="post" role="form" name="formulario1" id="formulario1" >
 						<h3>Anadir Cita</h3>
 						<div class="input-group mb-3">
 						  <div class="input-group-prepend">

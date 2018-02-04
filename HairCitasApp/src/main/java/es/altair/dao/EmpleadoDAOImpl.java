@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Session;
 
 import es.altair.bean.Empleado;
+import es.altair.bean.Log;
 import es.altair.bean.Servicio;
 import es.altair.bean.Usuario;
 import es.altair.util.Encriptaciones;
@@ -142,5 +143,6 @@ public class EmpleadoDAOImpl implements EmpleadoDAO {
 			}
 			return correcto;
 	}
+	
 
 }

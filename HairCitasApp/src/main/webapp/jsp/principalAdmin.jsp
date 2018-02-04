@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="es.altair.dao.ServicioDAOImpl"%>
 <%@page import="es.altair.dao.ServicioDAO"%>
 <%@page import="es.altair.dao.CitaDAOImpl"%>
@@ -7,7 +8,14 @@
 <%@page import="es.altair.dao.UsuarioDAOImpl"%>
 <%@page import="es.altair.dao.UsuarioDAO"%>
 <%@page import="es.altair.bean.Usuario"%>
+<%@page import="es.altair.dao.UtilDAOImpl"%>
+<%@page import="es.altair.dao.UtilDAO"%>
+<%@page import="es.altair.bean.Percentual"%>
+<%@page import="es.altair.bean.Log"%>
 <%@page import="java.util.List"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
@@ -71,6 +79,29 @@
 				ServicioDAO sDAO = new ServicioDAOImpl();
 				int numServicios = sDAO.cuentaServicios();
 				
+			    Date ahora = new Date();
+			    SimpleDateFormat formateador = new SimpleDateFormat("dd-MM-yyyy");
+			    String mes = formateador.format(ahora).toString();
+				int mesActual = Integer.parseInt(mes.substring(3, 5));
+				
+				UtilDAO utDAO = new UtilDAOImpl();
+				Percentual pMes = new Percentual(mesActual, numUsuarios, numEmpleados, numServicios, numCitas);
+				
+				List<Log> listaLogs = utDAO.listarLogs();
+				
+				int numLogs = listaLogs.size();
+				
+				utDAO.guardarDatosPercentuales(pMes);
+				
+				Percentual percs = utDAO.listarPercentuales();
+				
+				double pU=0, pE=0, pS=0,pC=0;
+				
+				pU = ((numUsuarios - percs.getNumUsu()) * 100) / numUsuarios;
+				pE = ((numEmpleados - percs.getNumEmp()) * 100) / numEmpleados;
+				pS = ((numServicios - percs.getNumSer()) * 100) / numServicios;
+				pC = ((numCitas - percs.getNumCit()) * 100) / numCitas;
+
 
 		%>
     
@@ -174,24 +205,37 @@
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                     <li><a href="javascript:;"> Perfil</a></li>
-                    <li><a href="../CerrarSesion"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="../CerrarSesion"><i class="fa fa-sign-out pull-right"></i> Salir</a></li>
                   </ul>
                 </li>
 
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">0</span>
-                  </a>
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                    <span class="badge bg-green"><%=numLogs %></span>
+                  </a>    
+                  
+ 				  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+ 				  	<%
+				
+						for (Log logs : listaLogs) {
+							String fecha[] = logs.getFechaLog().toString().split("-");
+							String fechaAux = String.format("%s/%s/%s", fecha[1], fecha[2].substring(0,2), fecha[0]); 
+					%>
                     <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>Verificar Alertas</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
+                      <a href="../BorrarLog?idLog=<%=logs.getIdlog() %>">
+                        <span class="image"><img src="../images/delete.png" alt="" /></span>
+                        <span>
+                          <span><%=fechaAux %></span>
+                        </span>
+                        <span class="message">
+                           <%=logs.getLogDesc() %>
+                        </span>
+                      </a>
                     </li>
+   
+                  <% } %>
+                    
                   </ul>
                 </li>
               </ul>
@@ -207,24 +251,43 @@
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total de Usuarios</span>
               <div class="count"><%=numUsuarios %></div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>4% </i> De la Semana Pasada</span>
+              <%
+              	if(numUsuarios < percs.getNumUsu()){    %>
+                    <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i><%=pU %> % </i> Del Mes Anterior</span>
+			  <%}else{ %>
+              	<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i><%=pU %> % </i> Del Mes Anterior</span>
+              	<%} %>
             </div>
 
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Empleados Activos</span>
               <div class="count"><%=numEmpleados %></div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> De la Semana Pasada</span>
+      		  <%
+              	if(numEmpleados < percs.getNumEmp()){    %>
+                    <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i><%=pE %> % </i> Del Mes Anterior</span>
+			  <%}else{ %>
+              	<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i><%=pE %> % </i> Del Mes Anterior</span>
+              	<%} %>
+
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total de Servicios</span>
               <div class="count"><%=numServicios %></div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-desc"></i>2% </i> De la Semana Pasada</span>
-            </div>
+      		  <%
+              	if(numServicios < percs.getNumSer()){    %>
+                    <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i><%=pS %> % </i> Del Mes Anterior</span>
+			  <%}else{ %>
+              	<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i><%=pS %> % </i> Del Mes Anterior</span>
+              	<%} %>            </div>
           <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-user"></i> Total de Citas</span>
               <div class="count"><%=numCitas %></div>
-              <span class="count_bottom"><i class="green"><i class="fa fa-sort-desc"></i>11% </i> De la Semana Pasada</span>
-            </div>
+      		  <%
+              	if(numCitas < percs.getNumCit()){    %>
+                    <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i><%=pC %> % </i> Del Mes Anterior</span>
+			  <%}else{ %>
+              	<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i><%=pC %> % </i> Del Mes Anterior</span>
+              	<%} %>            </div>
           </div>
           <!-- /top tiles -->
 
@@ -296,61 +359,7 @@
               <div class="row">
 
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                  <div class="x_panel">
-                    <div class="x_title">
-                      <h2>Localización de los Clientes <small>geo-presentación</small></h2>
-                      <ul class="nav navbar-right panel_toolbox">
-                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                          <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Settings 1</a>
-                            </li>
-                            <li><a href="#">Settings 2</a>
-                            </li>
-                          </ul>
-                        </li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                        </li>
-                      </ul>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                      <div class="dashboard-widget-content">
-                        <div class="col-md-4 hidden-small">
-                          <h2 class="line_30">Clientes de 12 Paises</h2>
-
-                          <table class="countries_list">
-                            <tbody>
-                              <tr>
-                                <td>España</td>
-                                <td class="fs15 fw700 text-right">33%</td>
-                              </tr>
-                              <tr>
-                                <td>Brasil</td>
-                                <td class="fs15 fw700 text-right">27%</td>
-                              </tr>
-                              <tr>
-                                <td>Alemania</td>
-                                <td class="fs15 fw700 text-right">16%</td>
-                              </tr>
-                              <tr>
-                                <td>Rusia</td>
-                                <td class="fs15 fw700 text-right">11%</td>
-                              </tr>
-                              <tr>
-                                <td>Francia</td>
-                                <td class="fs15 fw700 text-right">10%</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        <div id="world-map-gdp" class="col-md-8 col-sm-12 col-xs-12" style="height:230px;"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+  
 
               </div>
               <div class="row">

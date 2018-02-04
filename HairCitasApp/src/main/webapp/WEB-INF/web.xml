@@ -94,6 +94,12 @@
   	<description></description>
   	<servlet-class>es.altair.controller.EditarUsuario</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>BorrarLog</servlet-name>
+  	<display-name>BorrarLog</display-name>
+  	<description></description>
+  	<servlet-class>es.altair.controller.BorrarLog</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ValidarUsuario</servlet-name>
   	<url-pattern>/ValidarUsuario</url-pattern>
@@ -153,5 +159,9 @@
   <servlet-mapping>
   	<servlet-name>EditarUsuario</servlet-name>
   	<url-pattern>/EditarUsuario</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>BorrarLog</servlet-name>
+  	<url-pattern>/BorrarLog</url-pattern>
   </servlet-mapping>
 </web-app>

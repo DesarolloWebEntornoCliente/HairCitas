@@ -1,6 +1,10 @@
 package es.altair.dao;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -31,6 +35,22 @@ public class CitaDAOImpl implements CitaDAO {
 
 		return citas;
 	}
+	
+	public Cita obtenerCita(int id) {
+		
+		Cita cit = null;
+		
+		Session sesion = Conexion.abrirConexion();
+		
+		cit = (Cita)sesion.createQuery("select s from Cita s where idCita=:id").setParameter("id", id).uniqueResult();
+		
+			sesion.getTransaction().commit();
+					
+		Conexion.desconectar(sesion);
+		
+		return cit;
+	}
+	
 
 	public void borrar(int id) {
 		
@@ -55,6 +75,18 @@ public class CitaDAOImpl implements CitaDAO {
 	public void insertar(Cita c) {
 		
 		Session sesion = Conexion.abrirConexion();
+		
+		
+		
+		
+		
+		Date dt = c.getFecha();
+		
+
+		
+		
+		
+		
 		
 		try {
 

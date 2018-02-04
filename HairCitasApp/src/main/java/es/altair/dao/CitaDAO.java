@@ -21,4 +21,6 @@ public interface CitaDAO {
 	
 	List<Object[]> listarCitas();
 	
+	Cita obtenerCita(int id);
+	
 }

@@ -20,6 +20,8 @@
         <mapping class="es.altair.bean.Servicio"/>
         <mapping class="es.altair.bean.Tiempo"/>
         <mapping class="es.altair.bean.TiempoEmpleado"/>
+        <mapping class="es.altair.bean.Percentual"/>
+        <mapping class="es.altair.bean.Log"/>
     </session-factory>
     
     <!-- 

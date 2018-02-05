@@ -55,8 +55,12 @@ public class TiempoDAOImpl implements TiempoDAO {
 		
 		List<Object[]> tmp2 = new ArrayList<Object[]>();
 		
-		String fecha[] = fechaEnt.split("/");
+		
+		String fechaConvert = fechaEnt.replace('.', '/');
+
+		String fecha[] = fechaConvert.split("/");
 		String fechaAux = String.format("%s-%s-%s", fecha[2], fecha[1], fecha[0]); 
+		
 
 		Session sesion = Conexion.abrirConexion();
 		

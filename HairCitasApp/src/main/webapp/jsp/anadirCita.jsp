@@ -23,9 +23,27 @@
 
     <title>Hair Citas </title>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/gh/atatanasov/gijgo@1.7.3/dist/combined/js/gijgo.min.js" type="text/javascript"></script>
-    <link href="https://cdn.jsdelivr.net/gh/atatanasov/gijgo@1.7.3/dist/combined/css/gijgo.min.css" rel="stylesheet" type="text/css" />
- 
+     <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- bootstrap-datetimepicker -->
+    <link href="../vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <!-- Ion.RangeSlider -->
+    <link href="../vendors/normalize-css/normalize.css" rel="stylesheet">
+    <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
+    <link href="../vendors/ion.rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+    <!-- Bootstrap Colorpicker -->
+    <link href="../vendors/mjolnic-bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet">
+
+    <link href="../vendors/cropper/dist/cropper.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../build/css/custom.min.css" rel="stylesheet">
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -39,13 +57,19 @@
         function habilitaBtn () {
             var se = document.getElementById("servicio").value;
             var em = document.getElementById("empleado").value;
-            var dp = document.getElementById("datepicker").value;
-            if(se != "Seleccione el Servicio..." && em != "Seleccione el Empleado" && dp != "")
+           // var dp = document.getElementById("myDatepicker2").value;
+            if(se != "Seleccione el Servicio..." && em != "Seleccione el Empleado")
             {
                 document.getElementById('btnEnviar').disabled=false;              
             }
         }
     </script>
+    
+    <style type="text/css">
+    	.selecciona{
+    		margin: 20px;
+    	}
+    </style>
     
   </head>
 
@@ -135,7 +159,7 @@
 
 	  <div class="row col-md-10 col-md-offset-3">		
 		
-		<form action="../AnadirHora" method="post" role="form"  data-parsley-validate name="formulario" class="form-horizontal form-label-left">  
+		<form action="../AnadirHora" method="get" role="form"  data-parsley-validate name="formulario" class="form-horizontal form-label-left">  
 			<h3>Anadir Cita</h3>
 				<table>
 						<tr>
@@ -159,7 +183,7 @@
 						</tr>
 						<br>
 						<br>
-						<tr>
+						<tr class="selecciona">
 							<td>
 							<div class="input-group">
 							  <div class="input-group-prepend">
@@ -179,16 +203,27 @@
 							  </select>
 							</td>
 						</tr>	
-						<tr>
-						<td>
-							<div class="input-group" style="margin-top: 20px;">
-							   <label>Fecha <input id="datepicker" name="datepicker"  onchange="habilitaBtn()" /></label>
-							</div>    
-				
+						<tr class="selecciona">
+							<td>
+				  			<div >
+								    <label class="" for="inputGroupSelect01">Fecha  </label>
+							</div>
+							</td>
+							<td>	    
+			                    <div class="form-group">
+			                        <div class='input-group date'  >
+			                            <input type='text' class="form-control" id='myDatepicker2'  name="myDatepicker2" value="myDatepicker2" />
+			                            <span class="input-group-addon">
+			                               <span class="glyphicon glyphicon-calendar"></span>
+			                            </span>
+			                        </div>
+			                    </div>
+			                </td>
+					
 						    <script>
-						        $('#datepicker').datepicker({
-						            showOtherMonths: true,
-						        });
+					        $(function(){
+					        	  $('#myDatepicker2').data("DateTimePicker").minDate(e.date);
+					        });
 						    </script>
 							<script type="text/javascript">
 														
@@ -198,7 +233,7 @@
 										});								
 									 });
 							</script>
-					 </td>	
+				
 						
 					</tr>
 					
@@ -242,6 +277,67 @@
     <script src="../vendors/flot.curvedlines/curvedLines.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+	
+	   <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="../vendors/moment/min/moment.min.js"></script>
+    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap-datetimepicker -->    
+    <script src="../vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <!-- Ion.RangeSlider -->
+    <script src="../vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
+    <!-- Bootstrap Colorpicker -->
+    <script src="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+    <!-- jquery.inputmask -->
+    <script src="../vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+    <!-- jQuery Knob -->
+    <script src="../vendors/jquery-knob/dist/jquery.knob.min.js"></script>
+    <!-- Cropper -->
+    <script src="../vendors/cropper/dist/cropper.min.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="../build/js/custom.min.js"></script>
+    
+    <!-- Initialize datetimepicker -->
+<script>
+    $('#myDatepicker').datetimepicker();
+    
+    $('#myDatepicker2').datetimepicker({
+        format: 'DD.MM.YYYY',
+            locale: 'es'
+    });
+    
+    $('#myDatepicker3').datetimepicker({
+        format: 'hh:mm A'
+    });
+    
+    $('#myDatepicker4').datetimepicker({
+        ignoreReadonly: true,
+        allowInputToggle: true
+    });
+
+    $('#datetimepicker6').datetimepicker();
+    
+    $('#datetimepicker7').datetimepicker({
+        useCurrent: false
+    });
+    
+    $("#datetimepicker6").on("dp.change", function(e) {
+        $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+    });
+    
+    $("#datetimepicker7").on("dp.change", function(e) {
+        $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+    });
+</script>
+	
 	
   </body>
 </html>

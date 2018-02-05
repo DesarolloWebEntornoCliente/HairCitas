@@ -141,7 +141,7 @@
 				
 				for (Object[] objects : citaFull) {
 					String fecha[] = objects[0].toString().split("-");
-					String fechaAux = String.format("%s/%s/%s", fecha[1], fecha[2], fecha[0]); 
+					String fechaAux = String.format("%s/%s/%s", fecha[2], fecha[1], fecha[0]); 
 
 				%>
 				<tr>

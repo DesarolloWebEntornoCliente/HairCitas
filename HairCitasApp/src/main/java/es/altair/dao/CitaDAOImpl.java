@@ -76,18 +76,6 @@ public class CitaDAOImpl implements CitaDAO {
 		
 		Session sesion = Conexion.abrirConexion();
 		
-		
-		
-		
-		
-		Date dt = c.getFecha();
-		
-
-		
-		
-		
-		
-		
 		try {
 
 			sesion.save(c);
@@ -105,9 +93,16 @@ public class CitaDAOImpl implements CitaDAO {
 		
 		Cita cit = null;
 		
+		int id = 0;
+		
 		Session sesion = Conexion.abrirConexion();
 		
-		int id = (Integer) sesion.createSQLQuery("SELECT MAX(idCita) from citas").uniqueResult();
+		try {
+			id = (Integer) sesion.createSQLQuery("SELECT MAX(idCita) from citas").uniqueResult();
+
+		} catch (Exception e) {
+			id=0;
+		}
 		
 		cit = (Cita)sesion.createQuery("select s from Cita s where idCita=:id").setParameter("id", id).uniqueResult();
 		

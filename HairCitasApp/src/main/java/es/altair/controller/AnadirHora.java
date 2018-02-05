@@ -61,7 +61,8 @@ public class AnadirHora extends HttpServlet {
 			
 			int servicio = Integer.parseInt(request.getParameter("servicio"));
 			int empleado = Integer.parseInt(request.getParameter("empleado"));
-			String fecha = request.getParameter("datepicker");		
+			String fecha = request.getParameter("myDatepicker2");		
+		
 	
 			SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 	
@@ -75,13 +76,13 @@ public class AnadirHora extends HttpServlet {
 			Cita c = new Cita();
 			
 			Date data = null;
-	
+	/*
 			try {
 				data = formato.parse(fecha);
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}  */
 
 			request.getSession().setAttribute("servicio11", servicio);
 			request.getSession().setAttribute("empleado11", empleado);
@@ -90,7 +91,7 @@ public class AnadirHora extends HttpServlet {
 			
             //adiciono los datos en el request
 			request.setAttribute("servicio", servicio);
-			request.setAttribute("servicio", empleado);
+			request.setAttribute("empleado", empleado);
 			request.setAttribute("fehaHttp", fecha);
 
 			//passo as caracteristicas obtidas do produto para  a pagina altera-produto.jsp

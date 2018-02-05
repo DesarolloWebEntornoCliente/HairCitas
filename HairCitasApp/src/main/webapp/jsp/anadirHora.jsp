@@ -56,11 +56,13 @@
 
 				
 				 int servicio = Integer.parseInt(request.getParameter("servicio"));
-				 String fecha = request.getParameter("datepicker");
+				 String fecha = request.getParameter("myDatepicker2");
 				 int empleado = Integer.parseInt(request.getParameter("empleado"));
 				 
-					String fecha1[] = fecha.toString().split("/");
-					String fechaAux = String.format("%s/%s/%s", fecha1[1], fecha1[0], fecha1[2]); 
+					//String fecha1[] = fecha.toString().split(".");
+					//String fechaAux = String.format("%s/%s/%s", fecha1[1], fecha1[0], fecha1[2]); 
+					
+					String fechaAux = fecha.replace('.','/');
 				
 				 ServicioDAO sDAO = new ServicioDAOImpl();
 				 List<Servicio> servicios = sDAO.listar();

@@ -1,5 +1,6 @@
 package es.altair.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import es.altair.bean.Cita;
@@ -11,7 +12,7 @@ public interface CitaDAO {
 
 	void borrar(int id);
 
-	void insertar(Cita c);
+	void insertar(Cita c, Date data);
 
 	Cita ultimaCitaGuardada();
 	

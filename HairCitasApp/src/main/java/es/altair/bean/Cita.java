@@ -16,7 +16,7 @@ public class Cita implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idCita;
 	
-	@Past
+	
 	private Date fecha;
 
 	@ManyToOne(cascade = CascadeType.DETACH)

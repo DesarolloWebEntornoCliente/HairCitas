@@ -224,14 +224,14 @@
 					%>
                     <li>
                       <a href="../BorrarLog?idLog=<%=logs.getIdlog() %>">
-                        <span class="image"><img src="../images/delete.png" alt="" /></span>
+                        <span class="image"><img src="../images/delete.png" alt="" /></span></a>
                         <span>
                           <span><%=fechaAux %></span>
                         </span>
                         <span class="message">
                            <%=logs.getLogDesc() %>
                         </span>
-                      </a>
+                      
                     </li>
    
                   <% } %>

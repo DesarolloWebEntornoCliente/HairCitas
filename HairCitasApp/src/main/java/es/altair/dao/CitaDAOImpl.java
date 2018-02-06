@@ -1,12 +1,14 @@
 package es.altair.dao;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 
 import es.altair.bean.Cita;
@@ -72,15 +74,23 @@ public class CitaDAOImpl implements CitaDAO {
 		
 	}
 
-	public void insertar(Cita c) {
+	public void insertar(Cita c, Date data) {
 		
 		Session sesion = Conexion.abrirConexion();
 		
+		Query query = sesion.createSQLQuery("insert into citas (fecha, idUsuario, idEmpleado, idServicio) values (:f, :u, :e, :s)");
+		query.setParameter("f", data);
+		query.setParameter("u", c.getUsuario());
+		query.setParameter("e", c.getEmpleado());
+		query.setParameter("s", c.getServicio());
+		query.executeUpdate();
+		
+
+		sesion.getTransaction().commit();
+		
 		try {
 
-			sesion.save(c);
-
-			sesion.getTransaction().commit();
+		
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {

@@ -1,6 +1,7 @@
 package es.altair.controller;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -63,9 +64,13 @@ public class AnadirCita extends HttpServlet {
 		int servicio = Integer.parseInt(request.getParameter("servicio"));
 		int empleado = Integer.parseInt(request.getParameter("empleado"));
 	
-		String fecha = request.getParameter("fecha");		
+		String fecha = request.getParameter("fecha");	
+		
+		String fecha1[] = fecha.split("/");
+		
+		fecha = (fecha1[2] + "-" + fecha1[1] + "-" + fecha1[0]).trim();
 
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		DateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 
 		ServicioDAO sDAO = new ServicioDAOImpl();
 		Servicio serv = sDAO.obtenerServicio(servicio);
@@ -76,25 +81,29 @@ public class AnadirCita extends HttpServlet {
 		TiempoDAO tDAO = new TiempoDAOImpl();
 		Tiempo tiempo = tDAO.obtenerTiempo(horario);
 		
-		Date data = null;
-
+		java.sql.Date data = null;
+		
 		try {
-			data = formato.parse(fecha);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
+			data=java.sql.Date.valueOf(fecha);
+
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
+		
 		
 		HttpSession sesion = request.getSession();
 		
 		TiempoEmpDAO teDAO = new TiempoEmpDAOImpl();
 
 
+		//Date dt = new Date(data.getDate());
+		
 		CitaDAO cDAO = new CitaDAOImpl();
 
 		Cita c = new Cita(data, ((Usuario) sesion.getAttribute("usuLogeado")), emp, serv);
 		
-		cDAO.insertar(c);
+		cDAO.insertar(c, data);
 		
 		Cita cRec = cDAO.ultimaCitaGuardada();
 		

@@ -159,7 +159,7 @@
 
 	  <div class="row col-md-10 col-md-offset-3">		
 		
-		<form action="../AnadirHora" method="get" role="form"  data-parsley-validate name="formulario" class="form-horizontal form-label-left">  
+		<form action="../AnadirHora" method="post" role="form"  data-parsley-validate name="formulario" class="form-horizontal form-label-left">  
 			<h3>Anadir Cita</h3>
 				<table>
 						<tr>

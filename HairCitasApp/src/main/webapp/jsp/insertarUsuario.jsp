@@ -39,7 +39,22 @@
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
     <link href="../css/codigo.css" rel="stylesheet">
+    
+    
+    <script type="text/javascript" src="../js/validaciones.js"></script>
+    
   </head>
+
+<script>
+function validarEmail(campo) {
+	if (!esCorrectoEmail(campo.value)) {
+		mostrarError(campo.id, "Error: Email Incorrecto");
+	} else {
+		borrarError(campo.id);
+	}
+}
+</script>
+
 
   <body class="nav-md">
     <div class="container body">
@@ -207,7 +222,9 @@
 					}
 				%>
 				<hr>
-				<form action="../InsertarUsuario" class="form-horizontal" method="post">
+			<section class='form'>
+				
+				<form action="../InsertarUsuario" class="form-horizontal" method="post"  onsubmit="return validarFormulario()">>
 					<div class="form-group">
 						<label class="col-md-2 control-label" for="login">Login</label>
 						<div class="col-md-6">
@@ -232,8 +249,7 @@
 					<div class="form-group">
 						<label class="col-md-2 control-label" for="email">Email</label>
 						<div class="col-md-6">
-							<input type="email" id="email" name="email" placeholder="Email"
-								class="form-control input-md" required>
+							<input type="email" id="email" name="email" placeholder="Email" class="form-control input-md" required="required" onblur="validarEmail(this)">
 						</div>
 					</div>
 					
@@ -259,6 +275,7 @@
 						</div>
 					</div>
 				</form>
+				</section>
 			</div>
 		</div>
 
@@ -307,6 +324,51 @@
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-	
+	    <script src="../js/multifield.js"></script>
+    <script src="../js/validator.js"></script>
+	<script>
+		// initialize the validator function
+		validator.message['date'] = 'not a real date';
+
+		// validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
+		$('form')
+			.on('blur', 'input[required], input.optional, select.required', validator.checkField)
+			.on('change', 'select.required', validator.checkField)
+			.on('keypress', 'input[required][pattern]', validator.keypress);
+
+		$('.multi.required')
+			.on('keyup blur', 'input', function(){
+				validator.checkField.apply( $(this).siblings().last()[0] );
+			});
+
+		// bind the validation to the form submit event
+		//$('#send').click('submit');//.prop('disabled', true);
+
+		$('form').submit(function(e){
+			e.preventDefault();
+			var submit = true;
+
+			// Validate the form using generic validaing
+			if( !validator.checkAll( $(this) ) ){
+				submit = false;
+			}
+
+			if( submit )
+				this.submit();
+
+			return false;
+		});
+
+		/* FOR DEMO ONLY */
+		$('#vfields').change(function(){
+			$('form').toggleClass('mode2');
+		}).prop('checked',false);
+
+		$('#alerts').change(function(){
+			validator.defaults.alerts = (this.checked) ? false : true;
+			if( this.checked )
+				$('form .alert').remove();
+		}).prop('checked',false);
+	</script>
   </body>
 </html>

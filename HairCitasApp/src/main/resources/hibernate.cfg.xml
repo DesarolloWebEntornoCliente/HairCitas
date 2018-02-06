@@ -7,7 +7,8 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-         <property name="hibernate.connection.password">my123$%sql</property>   
+   <!--      <property name="hibernate.connection.password">my123$%sql</property>   -->
+        <property name="hibernate.connection.password">altair</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hair</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
